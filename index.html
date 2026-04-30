@@ -97,9 +97,7 @@
             </div>
         </div>
 
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <!-- All 25 Products will be injected here by JavaScript -->
-        </div>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
     </section>
 
     <!-- CONTACT SECTION -->
@@ -186,10 +184,14 @@
         </div>
     </footer>
 
-    <!-- PRODUCT DETAIL MODAL -->
-    <div id="productModal" class="fixed inset-0 z-[200] hidden">
+    <!-- PRODUCT DETAIL MODAL (FIXED ALIGNMENT) -->
+    <div id="productModal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4">
+        <!-- Overlay -->
         <div class="absolute inset-0 bg-brand-dark/95 backdrop-blur-xl" onclick="closeModal()"></div>
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl bg-white rounded-[40px] shadow-2xl flex flex-col md:flex-row overflow-hidden animate-fade">
+        
+        <!-- Center Box Card -->
+        <div class="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl flex flex-col md:flex-row overflow-hidden animate-fade">
+            <!-- Close button pinned to outer card top-right -->
             <button onclick="closeModal()" class="absolute top-6 right-6 z-50 bg-brand-dark text-white p-3 rounded-full hover:bg-brand-fresh transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg>
             </button>
@@ -262,9 +264,8 @@
     </div>
 
     <script>
-        // COMPREHENSIVE PRODUCT DATABASE (All 25 items from provided images)
+        // COMPREHENSIVE PRODUCT DATABASE
         const products = [
-            // VERMICELLI (180g)
             { id: 1, name: "Wheat Vermicelli", nameTa: "கோதுமை சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "High Energy" },
             { id: 2, name: "Finger Millet Vermicelli", nameTa: "ராகி சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "Bone Strength" },
             { id: 3, name: "Pearl Millet Vermicelli", nameTa: "கம்பு சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "Iron Rich" },
@@ -278,8 +279,6 @@
             { id: 11, name: "Rajma Vermicelli", nameTa: "ராஜ்மா சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Fiber Rich" },
             { id: 12, name: "Red Rice Vermicelli", nameTa: "சிவப்பரிசி சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Detoxification" },
             { id: 13, name: "Black Rice Vermicelli", nameTa: "கருப்பரிசி சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Anti-Cancer" },
-            
-            // NOODLES (200g)
             { id: 14, name: "Finger Millet Noodles", nameTa: "ராகி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Calcium Rich" },
             { id: 15, name: "Pearl Millet Noodles", nameTa: "கம்பு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Energy" },
             { id: 16, name: "Sorghum Noodles", nameTa: "சோளம் நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Gluten Free" },
@@ -294,7 +293,6 @@
             { id: 25, name: "Black Rice Noodles", nameTa: "கருப்பரிசி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Premium Detox" }
         ];
 
-        // AI-POWERED DESCRIPTIONS
         const milletKnowledge = {
             "Wheat": { en: "Traditional whole wheat goodness with high energy.", ta: "பாரம்பரிய கோதுமையின் சத்துக்கள் நிறைந்தது." },
             "Finger Millet": { en: "Extremely rich in Calcium and Protein. Best for growing children.", ta: "ராகியில் கால்சியம் அதிகம் உள்ளது. வளரும் குழந்தைகளுக்கு சிறந்தது." },
@@ -315,10 +313,7 @@
         let currentLang = 'en';
         let modalQty = 1;
 
-        function init() {
-            renderProducts('All');
-            updateCartUI();
-        }
+        function init() { renderProducts('All'); updateCartUI(); }
 
         function renderProducts(category) {
             const grid = document.getElementById('productGrid');
@@ -381,10 +376,7 @@
             toggleCart(true);
         }
 
-        function saveCart() {
-            localStorage.setItem('guud_cart_v2', JSON.stringify(cart));
-            updateCartUI();
-        }
+        function saveCart() { localStorage.setItem('guud_cart_v2', JSON.stringify(cart)); updateCartUI(); }
 
         function updateCartUI() {
             const container = document.getElementById('cartItems');
@@ -451,15 +443,7 @@
             itemsTxt += `\nTotal Amount: ${document.getElementById('cartTotal').innerText}`;
             itemsTxt += `\n\nShipping To:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
 
-            // Send to WhatsApp
             window.open(`https://wa.me/919962867894?text=${encodeURIComponent(itemsTxt)}`);
-            
-            // Send to Email (Placeholder for FormSubmit.co integration)
-            fetch('https://formsubmit.co/ajax/guudlife26@gmail.com', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phone, address: addr, order_summary: itemsTxt })
-            });
 
             cart = [];
             saveCart();
@@ -474,10 +458,7 @@
         }
 
         function filterProducts(cat) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('tab-active');
-                btn.classList.add('text-gray-500');
-            });
+            document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.remove('tab-active'); btn.classList.add('text-gray-500'); });
             event.target.classList.add('tab-active');
             event.target.classList.remove('text-gray-500');
             renderProducts(cat);
