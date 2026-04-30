@@ -3,405 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GUUD LIFE | Health is Wealth | Rajkrishna Foods</title>
+    <title>GUUD LIFE | Premium Millet Nutrition</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --guud-green: #78C16A;
-            --guud-dark: #052a1a;
-            --guud-gold: #f2cc59;
-            --guud-bg: #F7F6F4;
-            --whatsapp-color: #25D366;
+            --p-dark: #0c3314; --s-fresh: #84e691; --a-gold: #ffde5d; --white: #ffffff;
         }
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--guud-bg);
-            color: var(--guud-dark);
-        }
-        .product-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .product-card:hover { transform: translateY(-10px); }
-        .cart-drawer { transition: transform 0.3s ease-in-out; transform: translateX(100%); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f6; color: var(--p-dark); }
+        .bg-primary { background-color: var(--p-dark); }
+        .text-accent { color: var(--a-gold); }
+        .border-accent { border-color: var(--a-gold); }
+        
+        /* Premium Card Effects */
+        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-12px); shadow: 0 30px 60px -12px rgba(12, 51, 20, 0.15); }
+        
+        /* Custom Cart Drawer Transition */
+        .cart-drawer { transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); transform: translateX(100%); }
         .cart-drawer.open { transform: translateX(0); }
-        .tab-active { background-color: var(--guud-dark); color: white; border-color: var(--guud-dark); }
         
-        /* Slider Styles */
-        .slider-container { position: relative; height: 600px; overflow: hidden; }
-        .slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 1s ease-in-out, transform 1.2s ease-out;
-            transform: scale(1.05);
-            display: flex;
-            align-items: center;
-        }
-        .slide.active { opacity: 1; transform: scale(1); z-index: 10; }
-        .slide-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to right, rgba(5,42,26,0.95) 30%, rgba(5,42,26,0.4) 100%);
-            z-index: 1;
-        }
-        .slide-content { position: relative; z-index: 2; }
-        
-        /* Floating Elements */
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background-color: var(--whatsapp-color);
-            color: #FFF; border-radius: 50px; width: 65px; height: 65px; z-index: 100;
-            display: flex; align-items: center; justify-content: center; box-shadow: 0px 10px 25px rgba(0,0,0,0.3);
-            transition: all 0.3s ease; text-decoration: none;
-        }
-        .whatsapp-float:hover { transform: scale(1.1); background-color: #128C7E; }
-        .whatsapp-pulse {
-            position: absolute; width: 100%; height: 100%; background-color: var(--whatsapp-color);
-            border-radius: 50%; z-index: -1; animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.5; } 100% { transform: scale(1.6); opacity: 0; } }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--guud-bg); }
-        ::-webkit-scrollbar-thumb { background: var(--guud-green); border-radius: 10px; }
-		.confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: var(--guud-green);
-    opacity: 0.7;
-    animation: fall 6s linear infinite;
-}
-
-.confetti:nth-child(2) { left: 20%; background: var(--guud-gold); animation-delay: 1s; }
-.confetti:nth-child(3) { left: 40%; animation-delay: 2s; }
-.confetti:nth-child(4) { left: 60%; background: var(--guud-gold); animation-delay: 3s; }
-.confetti:nth-child(5) { left: 80%; animation-delay: 4s; }
-
-@keyframes fall {
-    0% { transform: translateY(-100px) rotate(0deg); }
-    100% { transform: translateY(800px) rotate(360deg); }
-}
+        /* Lightbox & Modal */
+        .modal-overlay { backdrop-filter: blur(8px); transition: opacity 0.3s ease; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- WHATSAPP FLOATING ICON -->
-    <a href="https://wa.me/919962867894?text=Hello%20GUUD%20LIFE%2C%20I%20would%20like%20to%20place%20an%20order." 
-       class="whatsapp-float" target="_blank">
-        <div class="whatsapp-pulse"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="currentColor" class="text-white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72 1.035 3.692 1.581 5.711 1.582h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    </a>
-
-    <!-- NAVIGATION -->
-    <nav class="sticky top-0 z-50 bg-[#052a1a] text-white py-3 px-6 shadow-2xl border-b border-white/5">
+    <!-- NAV BAR -->
+    <nav class="sticky top-0 z-[100] bg-primary text-white py-4 px-6 border-b border-white/10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-12 h-12 relative flex items-center justify-center">
-                    <svg viewBox="0 0 100 100" class="w-full h-full fill-none stroke-[--guud-gold] stroke-[6]">
-                        <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" />
-                        <path d="M30 45 L50 65 L80 35" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
+            <a href="#" class="flex items-center gap-3">
+                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" alt="Logo" class="h-10 w-auto">
+                <span class="font-extrabold text-xl tracking-tighter hidden sm:block">GUUD LIFE</span>
+            </a>
+            
+            <div class="flex items-center gap-6">
+                <button onclick="toggleLang()" class="text-xs font-bold border-2 border-accent text-accent px-4 py-1.5 rounded-full hover:bg-accent hover:text-black transition-all">தமிழ் / EN</button>
+                <div class="relative cursor-pointer" onclick="toggleCart()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-accent text-primary text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">0</span>
                 </div>
-                <div>
-                    <h1 class="text-xl font-extrabold tracking-tighter text-[--guud-green] leading-none">GUUD LIFE</h1>
-                    <p class="text-[9px] font-bold text-[--guud-gold] tracking-widest uppercase mt-0.5">Health is Wealth</p>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <button onclick="toggleLang()" id="langBtn" class="hidden sm:block text-xs font-bold border border-white/20 px-4 py-2 rounded-full hover:bg-white/10 transition">தமிழ்</button>
-                <button onclick="toggleCart()" class="relative p-2 bg-white/5 rounded-full hover:bg-white/10 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[--guud-green]"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                    <span id="cartCount" class="absolute -top-1 -right-1 bg-[--guud-gold] text-[--guud-dark] text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">0</span>
-                </button>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SLIDER -->
-    <section class="slider-container">
-        <!-- Slide 1: General Millet -->
-        <div class="slide active" style="background: url('https://images.pexels.com/photos/4110226/pexels-photo-4110226.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;">
-            <div class="slide-overlay"></div>
-            <div class="max-w-7xl mx-auto px-6 slide-content w-full">
-                <div class="max-w-2xl space-y-6">
-                    <span class="inline-block bg-[--guud-green]/20 text-[--guud-green] px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase border border-[#78C16A]/30">Naturally Sourced</span>
-                    <h2 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-white">
-                        Authentic Millet <br><span class="text-[--guud-gold]">Goodness.</span>
-                    </h2>
-                    <p class="text-lg text-white/70">100% natural vermicelli and noodles from the heart of Tamil Nadu. No preservatives, just pure health.</p>
-                    <a href="#catalog" class="inline-block bg-[--guud-green] text-[#052a1a] px-8 py-4 rounded-2xl font-black text-lg hover:bg-[--guud-gold] transition-all shadow-xl">Shop Catalog</a>
-                </div>
+    <!-- HERO SECTION -->
+    <section class="bg-primary text-white py-24 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
+            <div class="flex-1 space-y-6">
+                <span class="text-accent font-bold tracking-[0.3em] uppercase text-sm">Experience Health Wealth</span>
+                <h2 class="text-6xl md:text-8xl font-extrabold leading-[0.9]">Millet <br><span class="text-secondary italic font-light">Fine Dining.</span></h2>
+                <p class="text-white/60 text-lg max-w-md">Elevating ancient grains into modern luxury. Zero preservatives. Infinite vitality.</p>
+                <button class="bg-accent text-primary px-10 py-5 rounded-full font-black hover:scale-105 transition-transform">Explore Collection</button>
             </div>
-        </div>
-
-        <!-- Slide 2: Vermicelli -->
-        <div class="slide" style="background: url('https://images.pexels.com/photos/2092906/pexels-photo-2092906.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;">
-            <div class="slide-overlay"></div>
-            <div class="max-w-7xl mx-auto px-6 slide-content w-full">
-                <div class="max-w-2xl space-y-6">
-                    <span class="inline-block bg-[--guud-gold]/20 text-[--guud-gold] px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase border border-[--guud-gold]/30">Vermicelli Range</span>
-                    <h2 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-white">
-                        Traditional <br><span class="text-[--guud-green]">Millet Semiya.</span>
-                    </h2>
-                    <p class="text-lg text-white/70">From Ragi to Black Rice, explore 11 varieties of artisanal vermicelli for a perfect breakfast.</p>
-                    <a href="#catalog" onclick="filterProducts('Vermicelli')" class="inline-block bg-[--guud-gold] text-[#052a1a] px-8 py-4 rounded-2xl font-black text-lg hover:bg-[--guud-green] transition-all shadow-xl">Explore Semiya</a>
-                </div>
+            <div class="flex-1">
+                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="rounded-[40px] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
             </div>
-        </div>
-
-        <!-- Slide 3: Noodles -->
-        <div class="slide" style="background: url('https://images.pexels.com/photos/2664216/pexels-photo-2664216.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;">
-            <div class="slide-overlay"></div>
-            <div class="max-w-7xl mx-auto px-6 slide-content w-full">
-                <div class="max-w-2xl space-y-6">
-                    <span class="inline-block bg-[--guud-green]/20 text-[--guud-green] px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase border border-[#78C16A]/30">Healthy Fast Food</span>
-                    <h2 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter text-white">
-                        Millet Based <br><span class="text-[--guud-gold]">Noodles.</span>
-                    </h2>
-                    <p class="text-lg text-white/70">Switch to Moringa, Samai, or Navadhanya noodles. Healthy, tasty, and guilt-free snacking.</p>
-                    <a href="#catalog" onclick="filterProducts('Noodles')" class="inline-block bg-[--guud-green] text-[#052a1a] px-8 py-4 rounded-2xl font-black text-lg hover:bg-[--guud-gold] transition-all shadow-xl">Browse Noodles</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slider Navigation Dots -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-            <button onclick="setSlide(0)" class="slide-dot w-3 h-3 rounded-full bg-white/30 transition-all"></button>
-            <button onclick="setSlide(1)" class="slide-dot w-3 h-3 rounded-full bg-white/30 transition-all"></button>
-            <button onclick="setSlide(2)" class="slide-dot w-3 h-3 rounded-full bg-white/30 transition-all"></button>
         </div>
     </section>
 
-    <!-- CATALOG SECTION -->
-    <!-- <section id="catalog" class="max-w-7xl mx-auto px-6 py-20"> -->
-        <!-- <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-12"> -->
-            <!-- <div> -->
-                <!-- <h3 class="text-3xl font-extrabold text-[--guud-dark] uppercase tracking-tighter">Our Menu</h3> -->
-                <!-- <p class="text-gray-400 font-bold">From the brochure of Rajkrishna Foods</p> -->
-            <!-- </div> -->
-            <!-- <div class="flex gap-2 bg-white p-1.5 rounded-2xl border border-gray-200 overflow-x-auto w-full md:w-auto"> -->
-                <!-- <button onclick="filterProducts('All')" class="tab-btn tab-active px-6 py-2.5 rounded-xl font-bold text-sm transition-all whitespace-nowrap">All Items</button> -->
-                <!-- <button onclick="filterProducts('Vermicelli')" class="tab-btn px-6 py-2.5 rounded-xl font-bold text-sm text-gray-400 transition-all whitespace-nowrap">Vermicelli (Semiya)</button> -->
-                <!-- <button onclick="filterProducts('Noodles')" class="tab-btn px-6 py-2.5 rounded-xl font-bold text-sm text-gray-400 transition-all whitespace-nowrap">Noodles</button> -->
-            <!-- </div> -->
-        <!-- </div> -->
-        <!-- <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div> -->
-    <!-- </section> -->
-	
-	
-	<section id="launch" class="relative py-24 overflow-hidden bg-[--guud-bg] text-center">
-
-    <!-- Floating Confetti -->
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-    </div>
-
-    <div class="max-w-4xl mx-auto px-6 relative z-10">
-        
-        <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-[--guud-dark] mb-6 animate-pulse">
-            🎉 GRAND LAUNCH SOON 🎉
-        </h2>
-
-        <p class="text-lg text-gray-500 font-semibold mb-10">
-            We are getting ready to bring you something healthy, delicious, and truly GUUD.
-        </p>
-
-        <!-- Countdown -->
-        <div id="countdown" class="flex justify-center gap-6 text-center mb-12">
+    <!-- PRODUCT CATALOG -->
+    <section id="catalog" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
             <div>
-                <div id="days" class="text-4xl font-black text-[--guud-green]">00</div>
-                <span class="text-xs font-bold text-gray-400">Days</span>
+                <h3 class="text-4xl font-black uppercase tracking-tighter">Artisanal Menu</h3>
+                <div class="h-1 w-24 bg-accent mt-2"></div>
             </div>
-            <div>
-                <div id="hours" class="text-4xl font-black text-[--guud-green]">00</div>
-                <span class="text-xs font-bold text-gray-400">Hours</span>
-            </div>
-            <div>
-                <div id="minutes" class="text-4xl font-black text-[--guud-green]">00</div>
-                <span class="text-xs font-bold text-gray-400">Minutes</span>
-            </div>
-            <div>
-                <div id="seconds" class="text-4xl font-black text-[--guud-green]">00</div>
-                <span class="text-xs font-bold text-gray-400">Seconds</span>
+            <div class="flex bg-white shadow-xl rounded-full p-1 border border-primary/5">
+                <button onclick="filterProducts('All')" class="px-8 py-3 rounded-full font-bold text-sm tab-active">All</button>
+                <button onclick="filterProducts('Vermicelli')" class="px-8 py-3 rounded-full font-bold text-sm text-gray-400">Vermicelli</button>
+                <button onclick="filterProducts('Noodles')" class="px-8 py-3 rounded-full font-bold text-sm text-gray-400">Noodles</button>
             </div>
         </div>
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"></div>
+    </section>
 
-        <!-- CTA -->
-        <a href="https://wa.me/919962867894?text=Notify%20me%20about%20GUUD%20LIFE%20launch"
-           class="inline-block bg-[--guud-dark] text-white px-8 py-4 rounded-2xl font-black text-lg hover:bg-[--guud-green] transition-all shadow-xl">
-            Notify Me on WhatsApp
-        </a>
-
-    </div>
-</section>
-
-
-
-    <!-- FOOTER -->
-    <footer class="bg-[#052a1a] text-white pt-20 pb-10 px-6 mt-10">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-white/10 pb-16">
-            <div>
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 border-2 border-[--guud-gold] rounded flex items-center justify-center text-[--guud-gold] font-black">GL</div>
-                    <h3 class="text-2xl font-black text-[--guud-green]">GUUD LIFE</h3>
-                </div>
-                <p class="text-white/40 text-sm leading-relaxed">Bringing authentic millet-based meals to every doorstep. A healthy gut leads to a Guud Life.</p>
-            </div>
-            <div class="space-y-4 text-white/60 text-sm">
-                <h4 class="text-[--guud-gold] font-bold uppercase tracking-widest text-xs">Contact Us</h4>
-                <p>G.N. Patti, Virudhunagar - 626 005, TN.</p>
-                <p>Cell: +91 99628 67894</p>
-                <p>Email: modernmillets@gmail.com</p>
-            </div>
-            <div>
-                <h4 class="text-[--guud-gold] font-bold uppercase tracking-widest text-xs mb-6">Social</h4>
-                <div class="flex gap-4">
-                    <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[--guud-green] hover:bg-[--guud-green] hover:text-white transition cursor-pointer font-bold">FB</div>
-                    <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[--guud-green] hover:bg-[--guud-green] hover:text-white transition cursor-pointer font-bold">IG</div>
-                    <a href="https://wa.me/919962867894" target="_blank" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center text-[--guud-green] hover:bg-[--guud-green] hover:text-white transition cursor-pointer font-bold">WA</a>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-10 text-[10px] text-white/20 font-bold uppercase tracking-[0.2em]">© 2026 Rajkrishna Foods.</div>
-    </footer>
-
-    <!-- CART DRAWER -->
-    <div id="cartOverlay" class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 transition-opacity duration-300" onclick="toggleCart()"></div>
-    <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 w-full max-w-md h-full bg-white z-[70] shadow-2xl flex flex-col">
-        <div class="p-6 border-b flex justify-between items-center">
-            <h3 class="text-xl font-black uppercase">Your Basket</h3>
-            <button onclick="toggleCart()" class="p-2 hover:bg-gray-100 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-        </div>
-        <div id="cartItems" class="flex-grow overflow-y-auto p-6 space-y-6"></div>
-        <div class="p-8 bg-[--guud-bg] border-t">
-            <div class="flex justify-between items-center mb-6">
-                <span class="font-bold text-gray-500 uppercase text-xs tracking-widest">Subtotal</span>
-                <span id="cartTotal" class="text-3xl font-black text-[--guud-dark]">₹0</span>
-            </div>
-            <button class="w-full bg-[--guud-dark] text-white py-5 rounded-2xl font-black text-lg hover:bg-[--guud-green] transition-colors">Order Now via WhatsApp</button>
-        </div>
-    </div>
-	<script>
-	const launchDate = new Date("May 15, 2026 10:00:00").getTime();
-
-setInterval(() => {
-    const now = new Date().getTime();
-    const distance = launchDate - now;
-
-    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const h = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((distance / (1000 * 60)) % 60);
-    const s = Math.floor((distance / 1000) % 60);
-
-    document.getElementById("days").innerText = d;
-    document.getElementById("hours").innerText = h;
-    document.getElementById("minutes").innerText = m;
-    document.getElementById("seconds").innerText = s;
-}, 1000);
-</script>
-    <script>
-        // SLIDER LOGIC
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slide-dot');
-
-        function setSlide(index) {
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.replace('bg-white', 'bg-white/30');
-            dots[currentSlide].classList.remove('w-8');
-
-            currentSlide = index;
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="productModal" class="fixed inset-0 z-[150] hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 modal-overlay bg-primary/95" onclick="closeModal()"></div>
+        <div class="absolute inset-y-0 right-0 w-full max-w-4xl bg-white shadow-2xl flex flex-col md:flex-row animate-slide-left">
+            <button onclick="closeModal()" class="absolute top-6 left-6 z-50 bg-primary text-white p-2 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
             
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.replace('bg-white/30', 'bg-white');
-            dots[currentSlide].classList.add('w-8');
-        }
+            <!-- Gallery Section -->
+            <div class="w-full md:w-1/2 bg-gray-100 p-12 flex flex-col justify-center gap-6 overflow-y-auto">
+                <div class="gallery-main relative cursor-zoom-in" onclick="openLightbox()">
+                    <img id="modalImg" src="" class="w-full h-auto rounded-3xl shadow-xl">
+                </div>
+                <div class="flex gap-4 overflow-x-auto pb-4">
+                    <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-24 h-24 rounded-xl border-2 border-primary cursor-pointer">
+                    <div class="w-24 h-24 rounded-xl bg-primary/10 flex items-center justify-center font-bold text-primary">View Full</div>
+                </div>
+            </div>
 
-        function nextSlide() {
-            let next = (currentSlide + 1) % slides.length;
-            setSlide(next);
-        }
+            <!-- Content Section -->
+            <div class="w-full md:w-1/2 p-12 overflow-y-auto custom-scrollbar">
+                <div class="space-y-6">
+                    <div>
+                        <span id="modalCat" class="text-secondary font-black tracking-widest text-xs uppercase"></span>
+                        <h2 id="modalTitle" class="text-4xl font-black mt-2 leading-tight"></h2>
+                        <h3 id="modalTitleTa" class="text-xl font-bold text-gray-400"></h3>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <span id="modalPrice" class="text-3xl font-black"></span>
+                        <span id="modalSize" class="bg-gray-100 px-4 py-1 rounded-full text-xs font-bold"></span>
+                    </div>
 
-        setInterval(nextSlide, 5000);
-        window.onload = () => { setSlide(0); init(); };
+                    <div id="modalDesc" class="text-gray-600 leading-relaxed space-y-4"></div>
 
-        // PRODUCT DATA
+                    <div class="grid grid-cols-2 gap-4 py-6 border-y border-gray-100">
+                        <div>
+                            <span class="text-[10px] uppercase font-black text-gray-400">Health Benefit</span>
+                            <p id="modalBenefit" class="font-bold text-sm text-primary"></p>
+                        </div>
+                        <div>
+                            <span class="text-[10px] uppercase font-black text-gray-400">Best For</span>
+                            <p id="modalStyle" class="font-bold text-sm text-primary"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-6 pt-6">
+                        <div class="flex items-center bg-gray-100 rounded-full px-4 py-2">
+                            <button onclick="updateModalQty(-1)" class="w-8 h-8 font-bold text-lg">-</button>
+                            <span id="modalQty" class="w-10 text-center font-black">1</span>
+                            <button onclick="updateModalQty(1)" class="w-8 h-8 font-bold text-lg">+</button>
+                        </div>
+                        <button id="modalAddBtn" class="flex-grow bg-primary text-white py-4 rounded-full font-black shadow-xl hover:bg-secondary transition-colors">Add to Basket</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SYSTEM -->
+    <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 w-full max-w-md h-full bg-white z-[200] shadow-2xl flex flex-col">
+        <div class="p-8 bg-primary text-white flex justify-between items-center">
+            <h3 class="text-xl font-black uppercase tracking-tighter">Your Basket</h3>
+            <button onclick="toggleCart()" class="text-accent hover:scale-125 transition-transform font-bold">CLOSE</button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-8 space-y-6">
+            <!-- Items injected here -->
+        </div>
+
+        <div id="checkoutForm" class="hidden p-8 border-t bg-gray-50 space-y-4">
+            <h4 class="font-black text-lg">Delivery Details</h4>
+            <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 rounded-xl border">
+            <input type="tel" id="custPhone" placeholder="Mobile Number" class="w-full p-4 rounded-xl border">
+            <textarea id="custAddr" placeholder="Full Shipping Address" class="w-full p-4 rounded-xl border"></textarea>
+            <button onclick="submitOrder()" class="w-full bg-primary text-white py-5 rounded-xl font-black">Complete Purchase</button>
+            <button onclick="toggleCheckout(false)" class="w-full text-gray-400 text-sm font-bold uppercase">Back to Cart</button>
+        </div>
+
+        <div id="cartFooter" class="p-8 border-t space-y-6">
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-gray-400">SUBTOTAL</span>
+                <span id="cartTotal" class="text-3xl font-black">₹0</span>
+            </div>
+            <button onclick="toggleCheckout(true)" class="w-full bg-primary text-white py-5 rounded-full font-black text-lg shadow-xl">Place Order</button>
+        </div>
+    </div>
+
+    <script>
+        // AI-Generated Rich Descriptions & Benefits Data
+        const milletIntel = {
+            "Finger Millet": { 
+                en: "Richest source of calcium among cereals. Perfect for bone density and gluten-free digestion.",
+                ta: "ராகியில் கால்சியம் அதிகம் உள்ளது. எலும்பு ஆரோக்கியத்திற்கு சிறந்தது.",
+                benefit: "Bone Health", style: "Breakfast Porridge" 
+            },
+            "Pearl Millet": { 
+                en: "Packed with iron and protein. Known for its cooling properties and high energy release.",
+                ta: "இரும்புச்சத்து நிறைந்தது. உடலுக்கு குளிர்ச்சி அளிக்கும்.",
+                benefit: "Anti-Anemic", style: "Stir-fry" 
+            },
+            "Foxtail Millet": { 
+                en: "Rich in vitamin B12 and fiber. Excellent for nervous system health and skin glow.",
+                ta: "வைட்டமின் B12 மற்றும் நார்சத்து நிறைந்தது.",
+                benefit: "Brain Health", style: "Salad Base" 
+            }
+            // Add other millets as needed...
+        };
+
         const products = [
-            { id: 1, name: "Wheat Vermicelli", nameTa: "கோதுமை சேமியா", cat: "Vermicelli", price: 30, size: "180g" },
-            { id: 2, name: "Ragi Vermicelli", nameTa: "ராகி சேமியா", cat: "Vermicelli", price: 30, size: "180g" },
-            { id: 3, name: "Kambu Vermicelli", nameTa: "கம்பு சேமியா", cat: "Vermicelli", price: 30, size: "180g" },
-            { id: 4, name: "Maize Vermicelli", nameTa: "சோளம் சேமியா", cat: "Vermicelli", price: 30, size: "180g" },
-            { id: 5, name: "Thinai Vermicelli", nameTa: "தினை சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 6, name: "Navadhanya Vermicelli", nameTa: "நவதானிய சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 7, name: "Samai Vermicelli", nameTa: "சாமை சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 8, name: "Varagu Vermicelli", nameTa: "வரகு சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 9, name: "Kuthiraivali Vermicelli", nameTa: "குதிரைவாலி சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 10, name: "Red Rice Vermicelli", nameTa: "சிவப்பரிசி சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 11, name: "Black Rice Vermicelli", nameTa: "கருப்பரிசி சேமியா", cat: "Vermicelli", price: 40, size: "180g" },
-            { id: 12, name: "Ragi Noodles", nameTa: "ராகி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 13, name: "Kambu Noodles", nameTa: "கம்பு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 14, name: "Maize Noodles", nameTa: "சோளம் நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 15, name: "Thinai Noodles", nameTa: "தினை நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 16, name: "Samai Noodles", nameTa: "சாமை நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 17, name: "Varagu Noodles", nameTa: "வரகு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 18, name: "Kuthiraivali Noodles", nameTa: "குதிரைவாலி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 19, name: "Navadhanya Noodles", nameTa: "நவதானிய நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 20, name: "Soya Noodles", nameTa: "சோயா நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 21, name: "Rajma Noodles", nameTa: "ராஜ்மா நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" },
-            { id: 22, name: "Moringa Noodles", nameTa: "Moringa Noodles", cat: "Noodles", price: 80, size: "200g" },
-            { id: 23, name: "Black Rice Noodles", nameTa: "கருப்பரிசி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g" }
+            { id: 1, name: "Finger Millet Vermicelli", nameTa: "ராகி சேமியா", cat: "Vermicelli", price: 30, size: "180g", grain: "Finger Millet" },
+            { id: 2, name: "Pearl Millet Vermicelli", nameTa: "கம்பு சேமியா", cat: "Vermicelli", price: 30, size: "180g", grain: "Pearl Millet" },
+            { id: 3, name: "Foxtail Millet Vermicelli", nameTa: "தினை சேமியா", cat: "Vermicelli", price: 40, size: "180g", grain: "Foxtail Millet" },
+            { id: 14, name: "Finger Millet Noodles", nameTa: "ராகி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", grain: "Finger Millet" },
+            { id: 15, name: "Pearl Millet Noodles", nameTa: "கம்பு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", grain: "Pearl Millet" }
         ];
 
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('guud_cart')) || [];
         let currentLang = 'en';
+        let modalQty = 1;
 
-        function init() { renderProducts('All'); }
+        // INIT
+        window.onload = () => {
+            renderProducts('All');
+            updateCartUI();
+        };
 
         function renderProducts(category) {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = '';
             const filtered = category === 'All' ? products : products.filter(p => p.cat === category);
+            
             filtered.forEach(p => {
                 const card = document.createElement('div');
-                card.className = 'product-card bg-white rounded-[2.5rem] p-6 border-2 border-transparent hover:border-[#78C16A]/30 hover:shadow-2xl flex flex-col';
+                card.className = 'product-card bg-white rounded-[2.5rem] p-6 shadow-xl shadow-primary/5 cursor-pointer flex flex-col';
+                card.onclick = (e) => { if(!e.target.closest('button')) openProduct(p.id); };
                 card.innerHTML = `
-                    <div class="aspect-square bg-[--guud-bg] rounded-[2rem] mb-6 flex items-center justify-center p-8 relative overflow-hidden group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[--guud-green] opacity-20 group-hover:scale-110 transition-transform"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-[10px] font-black shadow-sm">${p.size}</div>
+                    <div class="aspect-square bg-gray-50 rounded-[2rem] mb-6 overflow-hidden flex items-center justify-center p-8">
+                        <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto object-contain">
                     </div>
                     <div class="flex-grow">
-                        <div class="flex justify-between items-start mb-2">
-                            <span class="text-[10px] font-black text-[--guud-green] uppercase tracking-widest">${p.cat}</span>
-                            <span class="font-black text-[--guud-dark] text-xl">₹${p.price}</span>
-                        </div>
-                        <h4 class="text-lg font-black leading-tight mb-6 h-12 overflow-hidden">${currentLang === 'en' ? p.name : p.nameTa}</h4>
+                        <span class="text-[10px] font-black text-secondary tracking-widest uppercase">${p.cat}</span>
+                        <h4 class="text-xl font-bold mt-1 min-h-[3.5rem]">${currentLang === 'en' ? p.name : p.nameTa}</h4>
+                        <p class="text-2xl font-black text-primary mt-4">₹${p.price}</p>
                     </div>
-                    <button onclick="addToCart(${p.id})" class="w-full bg-[--guud-dark] text-white py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 hover:bg-[--guud-green] transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg> Add to Basket
+                    <button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" class="w-full mt-6 bg-primary text-white py-4 rounded-2xl font-black flex items-center justify-center gap-2 hover:bg-secondary transition-all active:scale-95">
+                        ADD TO BASKET
                     </button>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        function filterProducts(cat) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
-            const clickedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.innerText.includes(cat) || (cat==='All' && b.innerText==='All Items'));
-            if(clickedBtn) clickedBtn.classList.add('tab-active');
-            renderProducts(cat);
+        // MODAL SYSTEM
+        function openProduct(id) {
+            const p = products.find(x => x.id === id);
+            const intel = milletIntel[p.grain] || { en: "A nutritious choice for a balanced lifestyle.", ta: "ஆரோக்கியமான வாழ்விற்கு ஒரு சிறந்த தேர்வு.", benefit: "Nutritional", style: "Healthy Dish" };
+            
+            modalQty = 1;
+            document.getElementById('modalQty').innerText = 1;
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalTitleTa').innerText = p.nameTa;
+            document.getElementById('modalPrice').innerText = `₹${p.price}`;
+            document.getElementById('modalSize').innerText = p.size;
+            document.getElementById('modalCat').innerText = p.cat;
+            document.getElementById('modalImg').src = "https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true";
+            document.getElementById('modalDesc').innerText = currentLang === 'en' ? intel.en : intel.ta;
+            document.getElementById('modalBenefit').innerText = intel.benefit;
+            document.getElementById('modalStyle').innerText = intel.style;
+            
+            document.getElementById('modalAddBtn').onclick = () => {
+                addToCart(p.id, modalQty);
+                closeModal();
+            };
+
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => modal.classList.add('opacity-100'), 10);
         }
 
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            const exists = cart.find(i => i.id === id);
-            if (exists) exists.qty++; else cart.push({ ...product, qty: 1 });
+        function closeModal() {
+            const modal = document.getElementById('productModal');
+            modal.classList.remove('opacity-100');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        }
+
+        function updateModalQty(delta) {
+            modalQty = Math.max(1, modalQty + delta);
+            document.getElementById('modalQty').innerText = modalQty;
+        }
+
+        // CART SYSTEM
+        function addToCart(id, qty) {
+            const p = products.find(x => x.id === id);
+            const existing = cart.find(i => i.id === id);
+            if(existing) existing.qty += qty; else cart.push({...p, qty});
+            saveAndSync();
+            if(!document.getElementById('productModal').classList.contains('hidden')) return;
+            toggleCart(true);
+        }
+
+        function saveAndSync() {
+            localStorage.setItem('guud_cart', JSON.stringify(cart));
             updateCartUI();
         }
 
@@ -411,43 +290,85 @@ setInterval(() => {
             const countEl = document.getElementById('cartCount');
             container.innerHTML = '';
             let total = 0, count = 0;
+
             cart.forEach(item => {
-                total += item.price * item.qty; count += item.qty;
+                total += item.price * item.qty;
+                count += item.qty;
                 const el = document.createElement('div');
-                el.className = 'flex items-center justify-between bg-white border border-gray-100 p-4 rounded-2xl shadow-sm';
+                el.className = 'flex items-center gap-4 bg-gray-50 p-4 rounded-2xl';
                 el.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 bg-[--guud-bg] rounded-xl flex items-center justify-center font-black text-[--guud-green]">${item.name[0]}</div>
-                        <div><h5 class="font-bold text-sm">${item.name}</h5><p class="text-[10px] text-gray-400 font-bold uppercase">₹${item.price}</p></div>
+                    <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-16 h-16 rounded-xl">
+                    <div class="flex-grow">
+                        <h5 class="font-bold text-sm leading-tight">${currentLang === 'en' ? item.name : item.nameTa}</h5>
+                        <p class="font-black text-primary">₹${item.price}</p>
                     </div>
-                    <div class="flex items-center gap-3">
-                        <button onclick="changeQty(${item.id}, -1)" class="p-1 hover:text-[--guud-green]">-</button>
-                        <span class="font-black text-sm w-4 text-center">${item.qty}</span>
-                        <button onclick="changeQty(${item.id}, 1)" class="p-1 hover:text-[--guud-green]">+</button>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 border rounded-full">-</button>
+                        <span class="font-bold text-sm">${item.qty}</span>
+                        <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 border rounded-full">+</button>
                     </div>
                 `;
                 container.appendChild(el);
             });
-            totalEl.textContent = `₹${total}`;
-            countEl.textContent = count;
+
+            totalEl.innerText = `₹${total}`;
+            countEl.innerText = count;
         }
 
         function changeQty(id, delta) {
             const item = cart.find(i => i.id === id);
             item.qty += delta;
-            if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            saveAndSync();
+        }
+
+        function toggleCart(forceOpen = false) {
+            const drawer = document.getElementById('cartDrawer');
+            if(forceOpen) drawer.classList.add('open');
+            else drawer.classList.toggle('open');
+        }
+
+        function toggleCheckout(isCheck) {
+            document.getElementById('checkoutForm').classList.toggle('hidden', !isCheck);
+            document.getElementById('cartFooter').classList.toggle('hidden', isCheck);
+            document.getElementById('cartItems').classList.toggle('hidden', isCheck);
+        }
+
+        async function submitOrder() {
+            const orderData = {
+                name: document.getElementById('custName').value,
+                phone: document.getElementById('custPhone').value,
+                addr: document.getElementById('custAddr').value,
+                items: cart.map(i => `${i.name} x ${i.qty}`).join(', '),
+                total: document.getElementById('cartTotal').innerText
+            };
+
+            if(!orderData.name || !orderData.phone) return alert("Please fill all details");
+
+            // Recommended Method: Use EmailJS or FormSubmit API
+            // Here using the FormSubmit.co endpoint for demonstration
+            const body = `Order from ${orderData.name} (${orderData.phone})\nItems: ${orderData.items}\nTotal: ${orderData.total}\nAddress: ${orderData.addr}`;
+            
+            // This would normally be an AJAX post
+            window.open(`https://wa.me/919962867894?text=${encodeURIComponent(body)}`);
+            
+            // Clear cart
+            cart = [];
+            saveAndSync();
+            toggleCart();
+            alert("Order Details Prepared for WhatsApp! Clear cart.");
+        }
+
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'ta' : 'en';
+            renderProducts('All');
             updateCartUI();
         }
 
-        function toggleCart() {
-            const drawer = document.getElementById('cartDrawer');
-            const overlay = document.getElementById('cartOverlay');
-            if (drawer.classList.contains('open')) {
-                drawer.classList.remove('open'); overlay.classList.add('hidden');
-            } else {
-                drawer.classList.add('open'); overlay.classList.remove('hidden');
-                setTimeout(() => overlay.classList.add('opacity-100'), 10);
-            }
+        function filterProducts(cat) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+            event.target.classList.add('tab-active');
+            renderProducts(cat);
         }
     </script>
 </body>
