@@ -3,207 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GUUD LIFE | Premium Millet Nutrition</title>
+    <title>GUUD LIFE | Premium Millet Nutrition | Rajkrishna Foods</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --p-dark: #0c3314; --s-fresh: #84e691; --a-gold: #ffde5d; --white: #ffffff;
+            --p-dark: #0c3314;    /* Primary Dark Green */
+            --s-fresh: #84e691;   /* Secondary Fresh Green */
+            --a-gold: #ffde5d;    /* Accent Gold */
+            --white: #ffffff;
         }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf9f6; color: var(--p-dark); }
-        .bg-primary { background-color: var(--p-dark); }
-        .text-accent { color: var(--a-gold); }
-        .border-accent { border-color: var(--a-gold); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfb; color: var(--p-dark); }
         
-        /* Premium Card Effects */
-        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .product-card:hover { transform: translateY(-12px); shadow: 0 30px 60px -12px rgba(12, 51, 20, 0.15); }
+        .bg-brand-dark { background-color: var(--p-dark); }
+        .text-brand-gold { color: var(--a-gold); }
+        .text-brand-fresh { color: var(--s-fresh); }
         
-        /* Custom Cart Drawer Transition */
-        .cart-drawer { transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); transform: translateX(100%); }
+        /* Custom UI Components */
+        .glass-nav { background: rgba(12, 51, 20, 0.95); backdrop-filter: blur(10px); }
+        .product-card { transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1); border: 1px solid rgba(12, 51, 20, 0.05); }
+        .product-card:hover { transform: translateY(-12px); box-shadow: 0 40px 80px -20px rgba(12, 51, 20, 0.15); border-color: var(--s-fresh); }
+        
+        .cart-drawer { transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1); transform: translateX(100%); }
         .cart-drawer.open { transform: translateX(0); }
         
-        /* Lightbox & Modal */
-        .modal-overlay { backdrop-filter: blur(8px); transition: opacity 0.3s ease; }
+        .tab-active { background: var(--p-dark); color: var(--a-gold); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--p-dark); border-radius: 10px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.8s ease forwards; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- NAV BAR -->
-    <nav class="sticky top-0 z-[100] bg-primary text-white py-4 px-6 border-b border-white/10">
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-[100] glass-nav text-white py-4 px-6 border-b border-white/10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3">
-                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" alt="Logo" class="h-10 w-auto">
-                <span class="font-extrabold text-xl tracking-tighter hidden sm:block">GUUD LIFE</span>
+            <a href="#" class="flex items-center gap-4">
+                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" alt="GUUD LIFE" class="h-12 w-auto object-contain">
+                <div class="hidden md:block">
+                    <h1 class="text-xl font-extrabold tracking-tighter leading-none">GUUD LIFE</h1>
+                    <p class="text-[9px] font-bold text-brand-gold tracking-[0.2em] uppercase mt-1">Health is Wealth</p>
+                </div>
             </a>
             
-            <div class="flex items-center gap-6">
-                <button onclick="toggleLang()" class="text-xs font-bold border-2 border-accent text-accent px-4 py-1.5 rounded-full hover:bg-accent hover:text-black transition-all">தமிழ் / EN</button>
-                <div class="relative cursor-pointer" onclick="toggleCart()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-                    <span id="cartCount" class="absolute -top-2 -right-2 bg-accent text-primary text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">0</span>
-                </div>
+            <div class="flex items-center gap-4 md:gap-8">
+                <a href="#catalog" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Products</a>
+                <a href="#contact" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Contact</a>
+                <button onclick="toggleLang()" id="langBtn" class="text-xs font-black border-2 border-brand-gold text-brand-gold px-4 py-2 rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all">தமிழ்</button>
+                
+                <button onclick="toggleCart()" class="relative group p-2 bg-white/5 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-gold text-brand-dark text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
             </div>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="bg-primary text-white py-24 px-6 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
-            <div class="flex-1 space-y-6">
-                <span class="text-accent font-bold tracking-[0.3em] uppercase text-sm">Experience Health Wealth</span>
-                <h2 class="text-6xl md:text-8xl font-extrabold leading-[0.9]">Millet <br><span class="text-secondary italic font-light">Fine Dining.</span></h2>
-                <p class="text-white/60 text-lg max-w-md">Elevating ancient grains into modern luxury. Zero preservatives. Infinite vitality.</p>
-                <button class="bg-accent text-primary px-10 py-5 rounded-full font-black hover:scale-105 transition-transform">Explore Collection</button>
+    <section class="relative bg-brand-dark text-white pt-20 pb-32 px-6 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-fresh/5 rounded-full blur-[120px] -mr-40 -mt-40"></div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="space-y-8 animate-fade">
+                <span class="inline-block bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-full text-xs font-bold tracking-[0.3em] uppercase border border-brand-gold/20">Organic & Natural</span>
+                <h2 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9]">Millet <br><span class="text-brand-fresh italic font-light">Superfoods.</span></h2>
+                <p class="text-white/60 text-lg max-w-md leading-relaxed">Artisanal Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives—just pure goodness from Rajkrishna Foods.</p>
+                <div class="flex gap-4">
+                    <a href="#catalog" class="bg-brand-gold text-brand-dark px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">Shop Catalog</a>
+                </div>
             </div>
-            <div class="flex-1">
-                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="rounded-[40px] shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
+            <div class="relative animate-fade" style="animation-delay: 0.2s">
+                <div class="absolute inset-0 bg-brand-gold/20 rounded-[60px] rotate-6 blur-2xl"></div>
+                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" alt="Millet Pack" class="relative rounded-[50px] shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-700">
             </div>
         </div>
     </section>
 
     <!-- PRODUCT CATALOG -->
     <section id="catalog" class="max-w-7xl mx-auto px-6 py-24">
-        <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
-            <div>
-                <h3 class="text-4xl font-black uppercase tracking-tighter">Artisanal Menu</h3>
-                <div class="h-1 w-24 bg-accent mt-2"></div>
+        <div class="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
+            <div class="space-y-2">
+                <h3 class="text-5xl font-black tracking-tighter uppercase">Our Menu</h3>
+                <p class="text-gray-400 font-bold uppercase tracking-widest text-xs">Direct from our brochure</p>
             </div>
-            <div class="flex bg-white shadow-xl rounded-full p-1 border border-primary/5">
-                <button onclick="filterProducts('All')" class="px-8 py-3 rounded-full font-bold text-sm tab-active">All</button>
-                <button onclick="filterProducts('Vermicelli')" class="px-8 py-3 rounded-full font-bold text-sm text-gray-400">Vermicelli</button>
-                <button onclick="filterProducts('Noodles')" class="px-8 py-3 rounded-full font-bold text-sm text-gray-400">Noodles</button>
+            <div class="flex bg-gray-100 p-1 rounded-full w-full md:w-auto">
+                <button onclick="filterProducts('All')" class="tab-btn tab-active px-8 py-3 rounded-full font-black text-sm transition-all flex-1 md:flex-none">All Items</button>
+                <button onclick="filterProducts('Vermicelli')" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Vermicelli</button>
+                <button onclick="filterProducts('Noodles')" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Noodles</button>
             </div>
         </div>
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"></div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- All 25 Products will be injected here by JavaScript -->
+        </div>
     </section>
 
-    <!-- PRODUCT DETAIL MODAL -->
-    <div id="productModal" class="fixed inset-0 z-[150] hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 modal-overlay bg-primary/95" onclick="closeModal()"></div>
-        <div class="absolute inset-y-0 right-0 w-full max-w-4xl bg-white shadow-2xl flex flex-col md:flex-row animate-slide-left">
-            <button onclick="closeModal()" class="absolute top-6 left-6 z-50 bg-primary text-white p-2 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-            </button>
-            
-            <!-- Gallery Section -->
-            <div class="w-full md:w-1/2 bg-gray-100 p-12 flex flex-col justify-center gap-6 overflow-y-auto">
-                <div class="gallery-main relative cursor-zoom-in" onclick="openLightbox()">
-                    <img id="modalImg" src="" class="w-full h-auto rounded-3xl shadow-xl">
-                </div>
-                <div class="flex gap-4 overflow-x-auto pb-4">
-                    <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-24 h-24 rounded-xl border-2 border-primary cursor-pointer">
-                    <div class="w-24 h-24 rounded-xl bg-primary/10 flex items-center justify-center font-bold text-primary">View Full</div>
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="bg-gray-50 py-24 px-6 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div>
+                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" class="h-16 mb-8 brightness-0 opacity-80">
+                <h3 class="text-4xl font-black tracking-tighter mb-6">Let's connect for <br><span class="text-brand-fresh">Better Health.</span></h3>
+                <p class="text-gray-500 max-w-md mb-12">Whether you're looking for bulk orders, dealership opportunities, or just want to talk about health, we're here.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">📍</div>
+                        <div><p class="text-xs font-black text-gray-400 uppercase tracking-widest">Address</p><p class="font-bold">G.N. Patti, Virudhunagar - 626 005, TN.</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">📞</div>
+                        <div><p class="text-xs font-black text-gray-400 uppercase tracking-widest">Call Us</p><p class="font-bold">+91 99628 67894</p></div>
+                    </div>
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">✉️</div>
+                        <div><p class="text-xs font-black text-gray-400 uppercase tracking-widest">Email</p><p class="font-bold">modernmillets@gmail.com</p></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Content Section -->
-            <div class="w-full md:w-1/2 p-12 overflow-y-auto custom-scrollbar">
-                <div class="space-y-6">
-                    <div>
-                        <span id="modalCat" class="text-secondary font-black tracking-widest text-xs uppercase"></span>
-                        <h2 id="modalTitle" class="text-4xl font-black mt-2 leading-tight"></h2>
-                        <h3 id="modalTitleTa" class="text-xl font-bold text-gray-400"></h3>
-                    </div>
-                    
-                    <div class="flex items-center gap-4">
-                        <span id="modalPrice" class="text-3xl font-black"></span>
-                        <span id="modalSize" class="bg-gray-100 px-4 py-1 rounded-full text-xs font-bold"></span>
-                    </div>
-
-                    <div id="modalDesc" class="text-gray-600 leading-relaxed space-y-4"></div>
-
-                    <div class="grid grid-cols-2 gap-4 py-6 border-y border-gray-100">
-                        <div>
-                            <span class="text-[10px] uppercase font-black text-gray-400">Health Benefit</span>
-                            <p id="modalBenefit" class="font-bold text-sm text-primary"></p>
+            <div class="bg-white p-10 rounded-[40px] shadow-2xl shadow-brand-dark/5">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Your Name</label>
+                            <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
                         </div>
-                        <div>
-                            <span class="text-[10px] uppercase font-black text-gray-400">Best For</span>
-                            <p id="modalStyle" class="font-bold text-sm text-primary"></p>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone</label>
+                            <input type="tel" placeholder="+91" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
                         </div>
                     </div>
-
-                    <div class="flex items-center gap-6 pt-6">
-                        <div class="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                            <button onclick="updateModalQty(-1)" class="w-8 h-8 font-bold text-lg">-</button>
-                            <span id="modalQty" class="w-10 text-center font-black">1</span>
-                            <button onclick="updateModalQty(1)" class="w-8 h-8 font-bold text-lg">+</button>
-                        </div>
-                        <button id="modalAddBtn" class="flex-grow bg-primary text-white py-4 rounded-full font-black shadow-xl hover:bg-secondary transition-colors">Add to Basket</button>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Message</label>
+                        <textarea rows="4" placeholder="How can we help?" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all"></textarea>
                     </div>
+                    <button type="submit" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black hover:bg-brand-fresh hover:text-brand-dark transition-all active:scale-95">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 pb-20 border-b border-white/5">
+                <div class="md:col-span-2 space-y-6">
+                    <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" class="h-16 brightness-110">
+                    <p class="text-white/40 max-w-sm leading-relaxed">Rajkrishna Foods is dedicated to reviving traditional millet grains for the modern dinner table. Our mission is to make health accessible and delicious.</p>
+                </div>
+                <div>
+                    <h4 class="text-brand-gold font-black uppercase tracking-widest text-xs mb-8">Navigation</h4>
+                    <ul class="space-y-4 text-white/60 font-bold text-sm">
+                        <li><a href="#" class="hover:text-brand-fresh transition-colors">Home</a></li>
+                        <li><a href="#catalog" class="hover:text-brand-fresh transition-colors">All Products</a></li>
+                        <li><a href="#contact" class="hover:text-brand-fresh transition-colors">Contact Us</a></li>
+                        <li><a href="https://wa.me/919962867894" target="_blank" class="hover:text-brand-fresh transition-colors">Wholesale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-gold font-black uppercase tracking-widest text-xs mb-8">Social Presence</h4>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-fresh transition-all cursor-pointer group">
+                            <span class="group-hover:invert font-black text-xs">FB</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-fresh transition-all cursor-pointer group">
+                            <span class="group-hover:invert font-black text-xs">IG</span>
+                        </div>
+                        <a href="https://wa.me/919962867894" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-fresh transition-all cursor-pointer group">
+                            <span class="group-hover:invert font-black text-xs">WA</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 text-center text-[10px] font-bold text-white/20 uppercase tracking-[0.4em]">
+                &copy; 2026 GUUD LIFE | RAJKRISHNA FOODS | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div id="productModal" class="fixed inset-0 z-[200] hidden">
+        <div class="absolute inset-0 bg-brand-dark/95 backdrop-blur-xl" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl bg-white rounded-[40px] shadow-2xl flex flex-col md:flex-row overflow-hidden animate-fade">
+            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 bg-brand-dark text-white p-3 rounded-full hover:bg-brand-fresh transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+            
+            <div class="w-full md:w-1/2 bg-gray-50 p-12 flex items-center justify-center">
+                <img id="modalImg" src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto drop-shadow-2xl">
+            </div>
+
+            <div class="w-full md:w-1/2 p-12 space-y-6">
+                <div>
+                    <span id="modalCat" class="text-brand-fresh font-black uppercase tracking-widest text-[10px]">Category</span>
+                    <h2 id="modalTitle" class="text-4xl font-black tracking-tighter mt-2 leading-tight">Product Name</h2>
+                    <h3 id="modalTitleTa" class="text-xl font-bold text-gray-400">தமிழ் பெயர்</h3>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <span id="modalPrice" class="text-3xl font-black">₹0</span>
+                    <span id="modalSize" class="bg-gray-100 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-gray-500">000g</span>
+                </div>
+
+                <div class="space-y-4">
+                    <p id="modalDescEn" class="text-gray-500 leading-relaxed text-sm">Rich in iron and fiber. Best for bone density and digestion. Prepared naturally.</p>
+                    <p id="modalDescTa" class="text-gray-400 font-bold leading-relaxed text-sm italic">இரும்புச்சத்து மற்றும் நார்ச்சத்து நிறைந்தது. செரிமானத்திற்கு சிறந்தது.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 py-6 border-y border-gray-100">
+                    <div><span class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Health Benefit</span><p id="modalBenefit" class="font-bold text-brand-dark">Superfood</p></div>
+                    <div><span class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Natural Grade</span><p class="font-bold text-brand-dark">100% Pure</p></div>
+                </div>
+
+                <div class="flex items-center gap-6 pt-4">
+                    <div class="flex items-center bg-gray-100 rounded-full px-4 py-2">
+                        <button onclick="updateModalQty(-1)" class="w-8 h-8 font-black text-lg">-</button>
+                        <span id="modalQty" class="w-10 text-center font-black">1</span>
+                        <button onclick="updateModalQty(1)" class="w-8 h-8 font-black text-lg">+</button>
+                    </div>
+                    <button id="modalAddBtn" class="flex-grow bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl hover:bg-brand-fresh transition-colors active:scale-95">Add to Basket</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CART SYSTEM -->
-    <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 w-full max-w-md h-full bg-white z-[200] shadow-2xl flex flex-col">
-        <div class="p-8 bg-primary text-white flex justify-between items-center">
+    <!-- CART SYSTEM DRAWER -->
+    <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 w-full max-w-md h-full bg-white z-[250] shadow-2xl flex flex-col">
+        <div class="p-8 bg-brand-dark text-white flex justify-between items-center">
             <h3 class="text-xl font-black uppercase tracking-tighter">Your Basket</h3>
-            <button onclick="toggleCart()" class="text-accent hover:scale-125 transition-transform font-bold">CLOSE</button>
+            <button onclick="toggleCart()" class="text-brand-gold hover:scale-125 transition-transform font-black">CLOSE</button>
         </div>
         
         <div id="cartItems" class="flex-grow overflow-y-auto p-8 space-y-6">
-            <!-- Items injected here -->
+            <!-- Items injected by JS -->
         </div>
 
         <div id="checkoutForm" class="hidden p-8 border-t bg-gray-50 space-y-4">
-            <h4 class="font-black text-lg">Delivery Details</h4>
-            <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 rounded-xl border">
-            <input type="tel" id="custPhone" placeholder="Mobile Number" class="w-full p-4 rounded-xl border">
-            <textarea id="custAddr" placeholder="Full Shipping Address" class="w-full p-4 rounded-xl border"></textarea>
-            <button onclick="submitOrder()" class="w-full bg-primary text-white py-5 rounded-xl font-black">Complete Purchase</button>
-            <button onclick="toggleCheckout(false)" class="w-full text-gray-400 text-sm font-bold uppercase">Back to Cart</button>
+            <h4 class="font-black text-lg tracking-tighter">Shipping Information</h4>
+            <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 rounded-xl border-gray-200 focus:ring-brand-fresh">
+            <input type="tel" id="custPhone" placeholder="Mobile Number" class="w-full p-4 rounded-xl border-gray-200">
+            <textarea id="custAddr" placeholder="Delivery Address" class="w-full p-4 rounded-xl border-gray-200"></textarea>
+            <button onclick="submitOrder()" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl">Complete Order via WhatsApp</button>
+            <button onclick="toggleCheckout(false)" class="w-full text-gray-400 text-xs font-bold uppercase tracking-widest text-center mt-2">Back to Cart</button>
         </div>
 
         <div id="cartFooter" class="p-8 border-t space-y-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold text-gray-400">SUBTOTAL</span>
+                <span class="font-bold text-gray-400 uppercase text-xs tracking-widest">Subtotal</span>
                 <span id="cartTotal" class="text-3xl font-black">₹0</span>
             </div>
-            <button onclick="toggleCheckout(true)" class="w-full bg-primary text-white py-5 rounded-full font-black text-lg shadow-xl">Place Order</button>
+            <button onclick="toggleCheckout(true)" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black text-lg shadow-xl active:scale-95 transition-transform">Proceed to Checkout</button>
         </div>
     </div>
 
     <script>
-        // AI-Generated Rich Descriptions & Benefits Data
-        const milletIntel = {
-            "Finger Millet": { 
-                en: "Richest source of calcium among cereals. Perfect for bone density and gluten-free digestion.",
-                ta: "ராகியில் கால்சியம் அதிகம் உள்ளது. எலும்பு ஆரோக்கியத்திற்கு சிறந்தது.",
-                benefit: "Bone Health", style: "Breakfast Porridge" 
-            },
-            "Pearl Millet": { 
-                en: "Packed with iron and protein. Known for its cooling properties and high energy release.",
-                ta: "இரும்புச்சத்து நிறைந்தது. உடலுக்கு குளிர்ச்சி அளிக்கும்.",
-                benefit: "Anti-Anemic", style: "Stir-fry" 
-            },
-            "Foxtail Millet": { 
-                en: "Rich in vitamin B12 and fiber. Excellent for nervous system health and skin glow.",
-                ta: "வைட்டமின் B12 மற்றும் நார்சத்து நிறைந்தது.",
-                benefit: "Brain Health", style: "Salad Base" 
-            }
-            // Add other millets as needed...
-        };
-
+        // COMPREHENSIVE PRODUCT DATABASE (All 25 items from provided images)
         const products = [
-            { id: 1, name: "Finger Millet Vermicelli", nameTa: "ராகி சேமியா", cat: "Vermicelli", price: 30, size: "180g", grain: "Finger Millet" },
-            { id: 2, name: "Pearl Millet Vermicelli", nameTa: "கம்பு சேமியா", cat: "Vermicelli", price: 30, size: "180g", grain: "Pearl Millet" },
-            { id: 3, name: "Foxtail Millet Vermicelli", nameTa: "தினை சேமியா", cat: "Vermicelli", price: 40, size: "180g", grain: "Foxtail Millet" },
-            { id: 14, name: "Finger Millet Noodles", nameTa: "ராகி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", grain: "Finger Millet" },
-            { id: 15, name: "Pearl Millet Noodles", nameTa: "கம்பு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", grain: "Pearl Millet" }
+            // VERMICELLI (180g)
+            { id: 1, name: "Wheat Vermicelli", nameTa: "கோதுமை சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "High Energy" },
+            { id: 2, name: "Finger Millet Vermicelli", nameTa: "ராகி சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "Bone Strength" },
+            { id: 3, name: "Pearl Millet Vermicelli", nameTa: "கம்பு சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "Iron Rich" },
+            { id: 4, name: "Sorghum Vermicelli", nameTa: "சோளம் சேமியா", cat: "Vermicelli", price: 30, size: "180g", benefit: "Heart Health" },
+            { id: 5, name: "Foxtail Millet Vermicelli", nameTa: "தினை சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Nervous Health" },
+            { id: 6, name: "MultiMillet Vermicelli", nameTa: "நவதானிய சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Immunity Boost" },
+            { id: 7, name: "Little Millet Vermicelli", nameTa: "சாமை சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Metabolism" },
+            { id: 8, name: "Kodo Millet Vermicelli", nameTa: "வரகு சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Antioxidant" },
+            { id: 9, name: "Barnyard Millet Vermicelli", nameTa: "குதிரைவாலி சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Blood Sugar" },
+            { id: 10, name: "Soya Vermicelli", nameTa: "சோயா சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "High Protein" },
+            { id: 11, name: "Rajma Vermicelli", nameTa: "ராஜ்மா சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Fiber Rich" },
+            { id: 12, name: "Red Rice Vermicelli", nameTa: "சிவப்பரிசி சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Detoxification" },
+            { id: 13, name: "Black Rice Vermicelli", nameTa: "கருப்பரிசி சேமியா", cat: "Vermicelli", price: 40, size: "180g", benefit: "Anti-Cancer" },
+            
+            // NOODLES (200g)
+            { id: 14, name: "Finger Millet Noodles", nameTa: "ராகி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Calcium Rich" },
+            { id: 15, name: "Pearl Millet Noodles", nameTa: "கம்பு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Energy" },
+            { id: 16, name: "Sorghum Noodles", nameTa: "சோளம் நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Gluten Free" },
+            { id: 17, name: "Foxtail Millet Noodles", nameTa: "தினை நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Vitamins" },
+            { id: 18, name: "Little Millet Noodles", nameTa: "சாமை நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Vitality" },
+            { id: 19, name: "Kodo Millet Noodles", nameTa: "வரகு நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Cleanse" },
+            { id: 20, name: "Barnyard Millet Noodles", nameTa: "குதிரைவாலி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Digestion" },
+            { id: 21, name: "MultiMillet Noodles", nameTa: "நவதானிய நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Whole Nutrition" },
+            { id: 22, name: "Soya Noodles", nameTa: "சோயா நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Muscle Growth" },
+            { id: 23, name: "Rajma Noodles", nameTa: "ராஜ்மா நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Weight Control" },
+            { id: 24, name: "Red Rice Noodles", nameTa: "சிவப்பரிசி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Heart" },
+            { id: 25, name: "Black Rice Noodles", nameTa: "கருப்பரிசி நூடுல்ஸ்", cat: "Noodles", price: 80, size: "200g", benefit: "Premium Detox" }
         ];
 
-        let cart = JSON.parse(localStorage.getItem('guud_cart')) || [];
+        // AI-POWERED DESCRIPTIONS
+        const milletKnowledge = {
+            "Wheat": { en: "Traditional whole wheat goodness with high energy.", ta: "பாரம்பரிய கோதுமையின் சத்துக்கள் நிறைந்தது." },
+            "Finger Millet": { en: "Extremely rich in Calcium and Protein. Best for growing children.", ta: "ராகியில் கால்சியம் அதிகம் உள்ளது. வளரும் குழந்தைகளுக்கு சிறந்தது." },
+            "Pearl Millet": { en: "High in Iron and Magnesium. Helps reduce body heat.", ta: "இரும்புச்சத்து நிறைந்தது. உடல் சூட்டை குறைக்கும்." },
+            "Sorghum": { en: "Heart-healthy grain that is easy on digestion.", ta: "இதய ஆரோக்கியத்திற்கு மற்றும் செரிமானத்திற்கு சிறந்தது." },
+            "Foxtail Millet": { en: "Excellent for nervous system health and skin glow.", ta: "நரம்பு மண்டல ஆரோக்கியத்திற்கு சிறந்தது." },
+            "MultiMillet": { en: "A power-packed blend of 9 essential millet grains.", ta: "9 வகையான சிறுதானியங்களின் சரிவிகித கலவை." },
+            "Little Millet": { en: "Highly efficient in regulating hormones and metabolism.", ta: "ஹார்மோன் மற்றும் வளர்சிதை மாற்றத்திற்கு சிறந்தது." },
+            "Kodo Millet": { en: "Loaded with antioxidants and phytochemicals for longevity.", ta: "ஆன்டி-ஆக்ஸிடன்ட்டுகள் நிறைந்தது." },
+            "Barnyard Millet": { en: "Perfect for weight loss and stabilizing blood sugar.", ta: "உடல் எடையை குறைக்க மற்றும் இரத்த சர்க்கரையை குறைக்க உதவும்." },
+            "Soya": { en: "Highest plant-based protein content for muscle health.", ta: "தாவர அடிப்படையிலான அதிக புரதச்சத்து கொண்டது." },
+            "Rajma": { en: "Excellent source of fiber and energy.", ta: "நார்ச்சத்து மற்றும் ஆற்றல் நிறைந்தது." },
+            "Red Rice": { en: "Natural detoxifying grain that improves blood circulation.", ta: "இரத்த ஓட்டத்தை சீராக்க உதவும்." },
+            "Black Rice": { en: "Royal grain with the highest concentration of anthocyanins.", ta: "கருப்பரிசி நோய் எதிர்ப்பு சக்தியை அதிகரிக்கும்." }
+        };
+
+        let cart = JSON.parse(localStorage.getItem('guud_cart_v2')) || [];
         let currentLang = 'en';
         let modalQty = 1;
 
-        // INIT
-        window.onload = () => {
+        function init() {
             renderProducts('All');
             updateCartUI();
-        };
+        }
 
         function renderProducts(category) {
             const grid = document.getElementById('productGrid');
@@ -212,29 +327,33 @@
             
             filtered.forEach(p => {
                 const card = document.createElement('div');
-                card.className = 'product-card bg-white rounded-[2.5rem] p-6 shadow-xl shadow-primary/5 cursor-pointer flex flex-col';
-                card.onclick = (e) => { if(!e.target.closest('button')) openProduct(p.id); };
+                card.className = 'product-card bg-white rounded-[2.5rem] p-6 flex flex-col group cursor-pointer';
+                card.onclick = (e) => { if(!e.target.closest('button')) openModal(p.id); };
+                
                 card.innerHTML = `
-                    <div class="aspect-square bg-gray-50 rounded-[2rem] mb-6 overflow-hidden flex items-center justify-center p-8">
-                        <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto object-contain">
+                    <div class="aspect-square bg-gray-50 rounded-[2rem] mb-6 relative overflow-hidden flex items-center justify-center p-8">
+                        <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-gold px-3 py-1 rounded-full text-[10px] font-black shadow-sm">${p.size}</div>
                     </div>
                     <div class="flex-grow">
-                        <span class="text-[10px] font-black text-secondary tracking-widest uppercase">${p.cat}</span>
-                        <h4 class="text-xl font-bold mt-1 min-h-[3.5rem]">${currentLang === 'en' ? p.name : p.nameTa}</h4>
-                        <p class="text-2xl font-black text-primary mt-4">₹${p.price}</p>
+                        <span class="text-[9px] font-black text-brand-fresh uppercase tracking-widest">${p.cat}</span>
+                        <h4 class="text-lg font-bold mt-1 min-h-[3rem] leading-tight">${currentLang === 'en' ? p.name : p.nameTa}</h4>
                     </div>
-                    <button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" class="w-full mt-6 bg-primary text-white py-4 rounded-2xl font-black flex items-center justify-center gap-2 hover:bg-secondary transition-all active:scale-95">
-                        ADD TO BASKET
-                    </button>
+                    <div class="flex items-center justify-between mt-6">
+                        <span class="text-2xl font-black">₹${p.price}</span>
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" class="bg-brand-dark text-white p-4 rounded-2xl hover:bg-brand-fresh transition-colors group-hover:scale-105 transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5v14"/></svg>
+                        </button>
+                    </div>
                 `;
                 grid.appendChild(card);
             });
         }
 
-        // MODAL SYSTEM
-        function openProduct(id) {
+        function openModal(id) {
             const p = products.find(x => x.id === id);
-            const intel = milletIntel[p.grain] || { en: "A nutritious choice for a balanced lifestyle.", ta: "ஆரோக்கியமான வாழ்விற்கு ஒரு சிறந்த தேர்வு.", benefit: "Nutritional", style: "Healthy Dish" };
+            const milletKey = Object.keys(milletKnowledge).find(k => p.name.includes(k));
+            const info = milletKnowledge[milletKey] || { en: "Organic millet based meal.", ta: "ஆரோக்கியமான சிறுதானிய உணவு." };
             
             modalQty = 1;
             document.getElementById('modalQty').innerText = 1;
@@ -243,44 +362,27 @@
             document.getElementById('modalPrice').innerText = `₹${p.price}`;
             document.getElementById('modalSize').innerText = p.size;
             document.getElementById('modalCat').innerText = p.cat;
-            document.getElementById('modalImg').src = "https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true";
-            document.getElementById('modalDesc').innerText = currentLang === 'en' ? intel.en : intel.ta;
-            document.getElementById('modalBenefit').innerText = intel.benefit;
-            document.getElementById('modalStyle').innerText = intel.style;
+            document.getElementById('modalDescEn').innerText = info.en;
+            document.getElementById('modalDescTa').innerText = info.ta;
+            document.getElementById('modalBenefit').innerText = p.benefit;
             
-            document.getElementById('modalAddBtn').onclick = () => {
-                addToCart(p.id, modalQty);
-                closeModal();
-            };
-
-            const modal = document.getElementById('productModal');
-            modal.classList.remove('hidden');
-            setTimeout(() => modal.classList.add('opacity-100'), 10);
+            document.getElementById('modalAddBtn').onclick = () => { addToCart(p.id, modalQty); closeModal(); };
+            document.getElementById('productModal').classList.remove('hidden');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('productModal');
-            modal.classList.remove('opacity-100');
-            setTimeout(() => modal.classList.add('hidden'), 300);
-        }
+        function closeModal() { document.getElementById('productModal').classList.add('hidden'); }
+        function updateModalQty(d) { modalQty = Math.max(1, modalQty + d); document.getElementById('modalQty').innerText = modalQty; }
 
-        function updateModalQty(delta) {
-            modalQty = Math.max(1, modalQty + delta);
-            document.getElementById('modalQty').innerText = modalQty;
-        }
-
-        // CART SYSTEM
         function addToCart(id, qty) {
             const p = products.find(x => x.id === id);
-            const existing = cart.find(i => i.id === id);
-            if(existing) existing.qty += qty; else cart.push({...p, qty});
-            saveAndSync();
-            if(!document.getElementById('productModal').classList.contains('hidden')) return;
+            const exists = cart.find(i => i.id === id);
+            if(exists) exists.qty += qty; else cart.push({...p, qty});
+            saveCart();
             toggleCart(true);
         }
 
-        function saveAndSync() {
-            localStorage.setItem('guud_cart', JSON.stringify(cart));
+        function saveCart() {
+            localStorage.setItem('guud_cart_v2', JSON.stringify(cart));
             updateCartUI();
         }
 
@@ -295,17 +397,19 @@
                 total += item.price * item.qty;
                 count += item.qty;
                 const el = document.createElement('div');
-                el.className = 'flex items-center gap-4 bg-gray-50 p-4 rounded-2xl';
+                el.className = 'flex items-center gap-4 bg-gray-50 p-4 rounded-2xl animate-fade';
                 el.innerHTML = `
-                    <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-16 h-16 rounded-xl">
+                    <div class="w-16 h-16 bg-white rounded-xl overflow-hidden flex items-center justify-center p-2">
+                        <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto">
+                    </div>
                     <div class="flex-grow">
                         <h5 class="font-bold text-sm leading-tight">${currentLang === 'en' ? item.name : item.nameTa}</h5>
-                        <p class="font-black text-primary">₹${item.price}</p>
+                        <p class="font-black text-brand-dark">₹${item.price}</p>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="changeQty(${item.id}, -1)" class="w-6 h-6 border rounded-full">-</button>
+                        <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 border rounded-full font-bold">-</button>
                         <span class="font-bold text-sm">${item.qty}</span>
-                        <button onclick="changeQty(${item.id}, 1)" class="w-6 h-6 border rounded-full">+</button>
+                        <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 border rounded-full font-bold">+</button>
                     </div>
                 `;
                 container.appendChild(el);
@@ -319,13 +423,15 @@
             const item = cart.find(i => i.id === id);
             item.qty += delta;
             if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
-            saveAndSync();
+            saveCart();
         }
 
-        function toggleCart(forceOpen = false) {
+        function toggleCart(open = null) {
             const drawer = document.getElementById('cartDrawer');
-            if(forceOpen) drawer.classList.add('open');
+            if(open === true) drawer.classList.add('open');
+            else if(open === false) drawer.classList.remove('open');
             else drawer.classList.toggle('open');
+            if(!drawer.classList.contains('open')) toggleCheckout(false);
         }
 
         function toggleCheckout(isCheck) {
@@ -334,42 +440,50 @@
             document.getElementById('cartItems').classList.toggle('hidden', isCheck);
         }
 
-        async function submitOrder() {
-            const orderData = {
-                name: document.getElementById('custName').value,
-                phone: document.getElementById('custPhone').value,
-                addr: document.getElementById('custAddr').value,
-                items: cart.map(i => `${i.name} x ${i.qty}`).join(', '),
-                total: document.getElementById('cartTotal').innerText
-            };
+        function submitOrder() {
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const addr = document.getElementById('custAddr').value;
+            if(!name || !phone || !addr) return alert("Please fill shipping details");
 
-            if(!orderData.name || !orderData.phone) return alert("Please fill all details");
+            let itemsTxt = "New Order from GUUD LIFE Website:\n\n";
+            cart.forEach(i => itemsTxt += `• ${i.name} (${i.size}) x ${i.qty} = ₹${i.price * i.qty}\n`);
+            itemsTxt += `\nTotal Amount: ${document.getElementById('cartTotal').innerText}`;
+            itemsTxt += `\n\nShipping To:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
 
-            // Recommended Method: Use EmailJS or FormSubmit API
-            // Here using the FormSubmit.co endpoint for demonstration
-            const body = `Order from ${orderData.name} (${orderData.phone})\nItems: ${orderData.items}\nTotal: ${orderData.total}\nAddress: ${orderData.addr}`;
+            // Send to WhatsApp
+            window.open(`https://wa.me/919962867894?text=${encodeURIComponent(itemsTxt)}`);
             
-            // This would normally be an AJAX post
-            window.open(`https://wa.me/919962867894?text=${encodeURIComponent(body)}`);
-            
-            // Clear cart
+            // Send to Email (Placeholder for FormSubmit.co integration)
+            fetch('https://formsubmit.co/ajax/guudlife26@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, address: addr, order_summary: itemsTxt })
+            });
+
             cart = [];
-            saveAndSync();
-            toggleCart();
-            alert("Order Details Prepared for WhatsApp! Clear cart.");
+            saveCart();
+            toggleCart(false);
+            alert("Thank you! Your order details have been prepared for WhatsApp.");
         }
 
         function toggleLang() {
             currentLang = currentLang === 'en' ? 'ta' : 'en';
-            renderProducts('All');
-            updateCartUI();
+            document.getElementById('langBtn').innerText = currentLang === 'en' ? 'தமிழ்' : 'English';
+            renderProducts(document.querySelector('.tab-active').innerText.includes('Vermicelli') ? 'Vermicelli' : (document.querySelector('.tab-active').innerText.includes('Noodles') ? 'Noodles' : 'All'));
         }
 
         function filterProducts(cat) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('text-gray-500');
+            });
             event.target.classList.add('tab-active');
+            event.target.classList.remove('text-gray-500');
             renderProducts(cat);
         }
+
+        window.onload = init;
     </script>
 </body>
 </html>
