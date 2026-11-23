@@ -14,3 +14,7 @@ desktop.ini
 # Editor directories
 .vscode/
 .idea/
+
+# Raw client brochure slices
+products/
+
