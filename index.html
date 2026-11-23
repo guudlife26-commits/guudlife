@@ -54,6 +54,35 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    
+        /* Card Gallery Controls & Auto Hover Swap */
+        .card-gallery-btn {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card:hover .card-gallery-btn {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        .product-card .card-hover-primary {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .product-card:hover .card-hover-primary {
+            opacity: 0 !important;
+            transform: scale(0.95);
+        }
+        .product-card .card-hover-secondary {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            transform: scale(0.95);
+        }
+        .product-card:hover .card-hover-secondary {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
@@ -558,9 +587,9 @@
                 size: "200g", 
                 benefit: "Calcium Rich",
                 images: [
-                    "assets/images/product/product_img.webp",
-                    "assets/images/product/finger_millet_noodles_cooked.webp",
-                    "assets/images/product/finger_millet_noodles_pack.webp"
+                    "assets/images/product/noodles_finger_millet_pack.webp",
+                    "assets/images/product/noodles_finger_millet_cooked.webp",
+                    "assets/images/product/product_img.webp"
                 ],
                 descEn: "Authentic Ragi noodles with authentic tasty spice masala mix. 100% natural, no added MSG, no preservatives.",
                 descTa: "சுவையான இயற்கை ராகி நூடுல்ஸ் மற்றும் மசாலா பாக்கெட். நிறமிகள், அஜினோமோட்டோ இல்லாத ஆரோக்கிய உணவு.",
@@ -576,7 +605,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Energy",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_pearl_millet_pack.webp",
+                    "assets/images/product/noodles_pearl_millet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "High-iron Kambu noodles that reduce body heat and provide sustained daily energy.",
                 descTa: "கம்பு நூடுல்ஸ் உடல் சூட்டை தணித்து நாள் முழுவதும் சுறுசுறுப்பை அளிக்கும்.",
                 ingredients: "Noodles: Pearl Millet (Kambu), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -591,7 +624,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Heart Health",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_sorghum_pack.webp",
+                    "assets/images/product/noodles_sorghum_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Sorghum (Cholam) noodles packed with dietary fiber and essential minerals.",
                 descTa: "இதய ஆரோக்கியத்திற்கும் மற்றும் எளிதான செரிமானத்திற்கும் சிறந்தது.",
                 ingredients: "Noodles: Sorghum (Cholam), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -606,7 +643,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Vitamins",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_foxtail_pack.webp",
+                    "assets/images/product/noodles_foxtail_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Vitamin-rich Thinai noodles formulated for nervous balance and natural vitality.",
                 descTa: "வைட்டமின்கள் மற்றும் தாதுக்கள் நிறைந்தது. நரம்பு மண்டலத்திற்கு வலிமை தரும்.",
                 ingredients: "Noodles: Foxtail Millet (Thinai), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -621,7 +662,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Vitality",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_little_millet_pack.webp",
+                    "assets/images/product/noodles_little_millet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Samai noodles loaded with B-complex vitamins for digestive and hormonal health.",
                 descTa: "செரிமானம் மற்றும் சுறுசுறுப்பான உடலியக்கத்திற்கு உதவும் ஆரோக்கிய உணவு.",
                 ingredients: "Noodles: Little Millet (Samai), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -636,7 +681,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Cleanse",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_kodo_pack.webp",
+                    "assets/images/product/noodles_kodo_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Antioxidant-dense Varagu noodles aiding liver cleanse and cellular renewal.",
                 descTa: "உடலில் உள்ள நச்சுக்களை நீக்கி கல்லீரல் ஆரோக்கியத்தை காக்கும் வரகு நூடுல்ஸ்.",
                 ingredients: "Noodles: Kodo Millet (Varagu), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -651,7 +700,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Digestion",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_barnyard_pack.webp",
+                    "assets/images/product/noodles_barnyard_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Low glycemic index noodles ideal for weight management and sugar control.",
                 descTa: "குறைந்த கிளைசெமிக் குறியீடு கொண்டது. எடையை கட்டுப்படுத்த உதவும்.",
                 ingredients: "Noodles: Barnyard Millet (Kuthiraivali), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -666,7 +719,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Whole Nutrition",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_multimillet_pack.webp",
+                    "assets/images/product/noodles_multimillet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Multi-millet nutrition bringing together ancient grains in one wholesome meal.",
                 descTa: "நவதானியங்களின் கூட்டு சத்துக்கள் நிறைந்த முழுமையான சத்துணவு.",
                 ingredients: "Noodles: Multi-Millet Blend, Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -681,7 +738,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Muscle Growth",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_soya_pack.webp",
+                    "assets/images/product/noodles_soya_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Plant-protein rich noodles for active fitness enthusiasts and children.",
                 descTa: "தாவர புரதம் நிறைந்தது. குழந்தைகள் மற்றும் உடற்பயிற்சி செய்பவர்களுக்கு உகந்தது.",
                 ingredients: "Noodles: Soya Beans, Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -696,7 +757,11 @@
                 mrp: 90,
                 size: "200g", 
                 benefit: "Weight Control",
-                images: ["assets/images/product/product_img.webp"],
+                images: [
+                    "assets/images/product/noodles_rajma_pack.webp",
+                    "assets/images/product/noodles_rajma_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
                 descEn: "Wholesome red kidney bean noodles with high dietary fiber and iron.",
                 descTa: "ராஜ்மா பீன்ஸ் சத்துக்கள் நிறைந்த நார்ச்சத்து மிகுந்த நூடுல்ஸ்.",
                 ingredients: "Noodles: Red Kidney Beans (Rajma), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
@@ -952,24 +1017,29 @@
                 };
                 
                 card.innerHTML = `
-                    <div class="aspect-square bg-gray-50 rounded-[2rem] mb-5 relative overflow-hidden flex items-center justify-center p-6 group/img select-none" id="cardImgWrap-${p.id}">
-                        <!-- Product Image -->
-                        <img id="cardImg-${p.id}" src="${currentImg}" alt="${p.name}" class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105">
+                    <div class="aspect-square bg-gray-50 rounded-[2rem] mb-5 relative overflow-hidden flex items-center justify-center p-6 select-none" id="cardImgWrap-${p.id}">
+                        <!-- Primary Product Image (Packaging) -->
+                        <img id="cardImg-${p.id}" src="${currentImg}" alt="${p.name}" class="w-full h-full object-contain ${hasMultiple && (cardImgIndex[p.id] || 0) === 0 ? 'card-hover-primary' : 'transition-transform duration-300 group-hover:scale-105'}">
                         
+                        ${hasMultiple && (cardImgIndex[p.id] || 0) === 0 ? `
+                            <!-- Automatic Hover Crossfade (Cooked Dish from Brochure) -->
+                            <img src="${p.images[1]}" alt="${p.name} cooked" class="card-hover-secondary absolute inset-0 w-full h-full object-contain p-6">
+                        ` : ''}
+
                         <!-- Weight Badge -->
                         <div class="absolute top-4 right-4 bg-brand-dark text-brand-gold px-3 py-1 rounded-full text-[10px] font-black shadow-sm z-10">${p.size}</div>
                         
                         <!-- Lightbox Zoom Icon Button -->
-                        <button onclick="event.stopPropagation(); openLightbox(${p.id}, cardImgIndex[${p.id}] || 0)" title="Enlarge image" aria-label="Enlarge image" class="absolute top-4 left-4 bg-brand-dark/70 hover:bg-brand-dark text-white p-2.5 rounded-full backdrop-blur-sm transition-all opacity-0 group-hover/img:opacity-100 z-10 shadow-md">
+                        <button onclick="event.stopPropagation(); openLightbox(${p.id}, cardImgIndex[${p.id}] || 0)" title="Enlarge image" aria-label="Enlarge image" class="card-gallery-btn absolute top-4 left-4 bg-brand-dark/80 hover:bg-brand-dark text-white p-2.5 rounded-full backdrop-blur-sm transition-all z-10 shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
                         </button>
                         
                         ${hasMultiple ? `
                             <!-- Hover Gallery Nav Controls -->
-                            <button onclick="event.stopPropagation(); prevCardImg(${p.id})" aria-label="Previous photo" class="absolute left-2.5 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white text-brand-dark w-8 h-8 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-10 hover:scale-110 active:scale-95">
+                            <button onclick="event.stopPropagation(); prevCardImg(${p.id})" aria-label="Previous photo" class="card-gallery-btn absolute left-2.5 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white text-brand-dark w-8 h-8 rounded-full shadow-md flex items-center justify-center z-20 hover:scale-110 active:scale-95 border border-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m15 18-6-6 6-6"/></svg>
                             </button>
-                            <button onclick="event.stopPropagation(); nextCardImg(${p.id})" aria-label="Next photo" class="absolute right-2.5 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white text-brand-dark w-8 h-8 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover/img:opacity-100 transition-opacity z-10 hover:scale-110 active:scale-95">
+                            <button onclick="event.stopPropagation(); nextCardImg(${p.id})" aria-label="Next photo" class="card-gallery-btn absolute right-2.5 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white text-brand-dark w-8 h-8 rounded-full shadow-md flex items-center justify-center z-20 hover:scale-110 active:scale-95 border border-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg>
                             </button>
                             
