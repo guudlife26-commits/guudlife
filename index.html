@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUUD LIFE | Premium Millet Nutrition | Rajkrishna Foods</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <meta name="description" content="GUUD LIFE by Rajkrishna Foods - Artisanal Millet Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives. Health is Wealth.">
+    <link rel="canonical" href="https://guudlife.in/">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://guudlife.in/">
+    <meta property="og:title" content="GUUD LIFE | Premium Millet Nutrition | Rajkrishna Foods">
+    <meta property="og:description" content="Artisanal Millet Vermicelli and Noodles crafted from 100% natural ancient grains. 100% Natural & Healthy.">
+    <meta property="og:image" content="https://guudlife.in/assets/images/product/product_img.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://guudlife.in/">
+    <meta property="twitter:title" content="GUUD LIFE | Premium Millet Nutrition">
+    <meta property="twitter:description" content="Artisanal Millet Vermicelli and Noodles crafted from 100% natural ancient grains.">
+    <meta property="twitter:image" content="https://guudlife.in/assets/images/product/product_img.webp">
+
+    <link rel="icon" type="image/webp" href="assets/images/guudlife_logo.webp">
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --p-dark: #0c3314;    /* Primary Dark Green */
@@ -44,19 +62,16 @@
     <nav class="sticky top-0 z-[100] glass-nav text-white py-4 px-6 border-b border-white/10">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center gap-4">
-                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" alt="GUUD LIFE" class="h-12 w-auto object-contain">
-                <div class="hidden md:block">
-                    <h1 class="text-xl font-extrabold tracking-tighter leading-none">GUUD LIFE</h1>
-                    <p class="text-[9px] font-bold text-brand-gold tracking-[0.2em] uppercase mt-1">Health is Wealth</p>
-                </div>
+                <img src="assets/images/guudlife_logo.webp" alt="GUUD LIFE - Health is Wealth" class="h-12 w-auto object-contain">
+                <span class="sr-only">GUUD LIFE - Health is Wealth</span>
             </a>
             
             <div class="flex items-center gap-4 md:gap-8">
-                <a href="#catalog" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Products</a>
-                <a href="#contact" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Contact</a>
+                <a href="#catalog" id="navProducts" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Products</a>
+                <a href="#contact" id="navContact" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Contact</a>
                 <button onclick="toggleLang()" id="langBtn" class="text-xs font-black border-2 border-brand-gold text-brand-gold px-4 py-2 rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all">தமிழ்</button>
                 
-                <button onclick="toggleCart()" class="relative group p-2 bg-white/5 rounded-full">
+                <button onclick="toggleCart()" class="relative group p-2 bg-white/5 rounded-full" aria-label="Open Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                     <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-gold text-brand-dark text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">0</span>
                 </button>
@@ -69,16 +84,16 @@
         <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-fresh/5 rounded-full blur-[120px] -mr-40 -mt-40"></div>
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
             <div class="space-y-8 animate-fade">
-                <span class="inline-block bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-full text-xs font-bold tracking-[0.3em] uppercase border border-brand-gold/20">Organic & Natural</span>
-                <h2 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9]">Millet <br><span class="text-brand-fresh italic font-light">Superfoods.</span></h2>
-                <p class="text-white/60 text-lg max-w-md leading-relaxed">Artisanal Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives—just pure goodness from Rajkrishna Foods.</p>
+                <span id="heroBadge" class="inline-block bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-full text-xs font-bold tracking-[0.3em] uppercase border border-brand-gold/20">Organic & Natural</span>
+                <h2 id="heroTitle" class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9]">Millet <br><span class="text-brand-fresh italic font-light">Superfoods.</span></h2>
+                <p id="heroDesc" class="text-white/60 text-lg max-w-md leading-relaxed">Artisanal Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives—just pure goodness from Rajkrishna Foods.</p>
                 <div class="flex gap-4">
-                    <a href="#catalog" class="bg-brand-gold text-brand-dark px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">Shop Catalog</a>
+                    <a href="#catalog" id="heroCta" class="bg-brand-gold text-brand-dark px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">Shop Catalog</a>
                 </div>
             </div>
             <div class="relative animate-fade" style="animation-delay: 0.2s">
                 <div class="absolute inset-0 bg-brand-gold/20 rounded-[60px] rotate-6 blur-2xl"></div>
-                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" alt="Millet Pack" class="relative rounded-[50px] shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-700">
+                <img src="assets/images/product/product_img.webp" alt="GUUD LIFE Millet Superfood Pack" class="relative rounded-[50px] shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-700">
             </div>
         </div>
     </section>
@@ -87,13 +102,13 @@
     <section id="catalog" class="max-w-7xl mx-auto px-6 py-24">
         <div class="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
             <div class="space-y-2">
-                <h3 class="text-5xl font-black tracking-tighter uppercase">Our Menu</h3>
-                <p class="text-gray-400 font-bold uppercase tracking-widest text-xs">Direct from our brochure</p>
+                <h3 id="menuTitle" class="text-5xl font-black tracking-tighter uppercase">Our Menu</h3>
+                <p id="menuSub" class="text-gray-400 font-bold uppercase tracking-widest text-xs">Direct from our brochure</p>
             </div>
             <div class="flex bg-gray-100 p-1 rounded-full w-full md:w-auto">
-                <button onclick="filterProducts('All')" class="tab-btn tab-active px-8 py-3 rounded-full font-black text-sm transition-all flex-1 md:flex-none">All Items</button>
-                <button onclick="filterProducts('Vermicelli')" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Vermicelli</button>
-                <button onclick="filterProducts('Noodles')" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Noodles</button>
+                <button id="tabBtnAll" onclick="filterProducts('All', this)" class="tab-btn tab-active px-8 py-3 rounded-full font-black text-sm transition-all flex-1 md:flex-none">All Items</button>
+                <button id="tabBtnVermicelli" onclick="filterProducts('Vermicelli', this)" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Vermicelli</button>
+                <button id="tabBtnNoodles" onclick="filterProducts('Noodles', this)" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Noodles</button>
             </div>
         </div>
 
@@ -104,22 +119,37 @@
     <section id="contact" class="bg-gray-50 py-24 px-6 border-y border-gray-100">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>
-                <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" class="h-16 mb-8 brightness-0 opacity-80">
-                <h3 class="text-4xl font-black tracking-tighter mb-6">Let's connect for <br><span class="text-brand-fresh">Better Health.</span></h3>
-                <p class="text-gray-500 max-w-md mb-12">Whether you're looking for bulk orders, dealership opportunities, or just want to talk about health, we're here.</p>
+                <img src="assets/images/guudlife_logo.webp" alt="GUUD LIFE Logo" class="h-16 mb-8 brightness-0 opacity-80">
+                <h3 id="contactHeading" class="text-4xl font-black tracking-tighter mb-6">Let's connect for <br><span class="text-brand-fresh">Better Health.</span></h3>
+                <p id="contactDesc" class="text-gray-500 max-w-md mb-12">Whether you're looking for bulk orders, dealership opportunities, or just want to talk about health, we're here.</p>
                 
                 <div class="space-y-6">
                     <div class="flex items-center gap-6 group">
-                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">📍</div>
-                        <div><p class="text-xs font-black text-gray-400 uppercase tracking-widest">Address</p><p class="font-bold">G.N. Patti, Virudhunagar - 626 005, TN.</p></div>
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <p id="lblAddress" class="text-xs font-black text-gray-400 uppercase tracking-widest">Address</p>
+                            <p class="font-bold">G.N. Patti, Virudhunagar - 626 005, TN.</p>
+                        </div>
                     </div>
                     <div class="flex items-center gap-6 group">
-                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">📞</div>
-                        <div><p class="text-xs font-black text-gray-400 uppercase tracking-widest">Call Us</p><p class="font-bold">+91 99628 67894</p></div>
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <p id="lblCall" class="text-xs font-black text-gray-400 uppercase tracking-widest">Call Us</p>
+                            <a href="tel:+919962867894" class="font-bold hover:text-brand-fresh transition-colors">+91 99628 67894</a>
+                        </div>
                     </div>
                     <div class="flex items-center gap-6 group">
-                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">✉️</div>
-                        <div><p class="text-xs font-black text-gray-400 uppercase tracking-widest">Email</p><p class="font-bold">modernmillets@gmail.com</p></div>
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <div>
+                            <p id="lblEmail" class="text-xs font-black text-gray-400 uppercase tracking-widest">Email</p>
+                            <a href="mailto:guudlife26@gmail.com" class="font-bold hover:text-brand-fresh transition-colors">guudlife26@gmail.com</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,19 +158,19 @@
                 <form id="contactForm" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Your Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
+                            <label id="lblYourName" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Your Name</label>
+                            <input type="text" id="inqName" required placeholder="John Doe" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
                         </div>
                         <div class="space-y-2">
-                            <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone</label>
-                            <input type="tel" placeholder="+91" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
+                            <label id="lblPhone" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone</label>
+                            <input type="tel" id="inqPhone" required placeholder="+91" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
                         </div>
                     </div>
                     <div class="space-y-2">
-                        <label class="text-[10px] font-black uppercase tracking-widest text-gray-400">Message</label>
-                        <textarea rows="4" placeholder="How can we help?" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all"></textarea>
+                        <label id="lblMsg" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Message</label>
+                        <textarea id="inqMsg" rows="4" placeholder="How can we help?" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black hover:bg-brand-fresh hover:text-brand-dark transition-all active:scale-95">Send Inquiry</button>
+                    <button type="submit" id="btnSendInquiry" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black hover:bg-brand-fresh hover:text-brand-dark transition-all active:scale-95">Send Inquiry</button>
                 </form>
             </div>
         </div>
@@ -151,12 +181,12 @@
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 pb-20 border-b border-white/5">
                 <div class="md:col-span-2 space-y-6">
-                    <img src="https://github.com/guudlife26-commits/guudlife/blob/main/guudlife_logo.webp?raw=true" class="h-16 brightness-110">
-                    <p class="text-white/40 max-w-sm leading-relaxed">Rajkrishna Foods is dedicated to reviving traditional millet grains for the modern dinner table. Our mission is to make health accessible and delicious.</p>
+                    <img src="assets/images/guudlife_logo.webp" alt="GUUD LIFE Logo" class="h-16 brightness-110">
+                    <p class="text-white/60 max-w-sm leading-relaxed">Rajkrishna Foods is dedicated to reviving traditional millet grains for the modern dinner table. Our mission is to make health accessible and delicious.</p>
                 </div>
                 <div>
                     <h4 class="text-brand-gold font-black uppercase tracking-widest text-xs mb-8">Navigation</h4>
-                    <ul class="space-y-4 text-white/60 font-bold text-sm">
+                    <ul class="space-y-4 text-white/70 font-bold text-sm">
                         <li><a href="#" class="hover:text-brand-fresh transition-colors">Home</a></li>
                         <li><a href="#catalog" class="hover:text-brand-fresh transition-colors">All Products</a></li>
                         <li><a href="#contact" class="hover:text-brand-fresh transition-colors">Contact Us</a></li>
@@ -166,25 +196,17 @@
                 <div>
                     <h4 class="text-brand-gold font-black uppercase tracking-widest text-xs mb-8">Social Presence</h4>
                     <div class="flex gap-4">
-                        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-fresh transition-all cursor-pointer group">
-                            <span class="group-hover:invert font-black text-xs">FB</span>
-                        </div>
-                        <div class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-fresh transition-all cursor-pointer group">
-                            <span class="group-hover:invert font-black text-xs">IG</span>
-                        </div>
-                        <a href="https://wa.me/919962867894" class="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-brand-fresh transition-all cursor-pointer group">
-                            <span class="group-hover:invert font-black text-xs">WA</span>
-                        </a>
+                        <a href="https://wa.me/919962867894" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-brand-fresh hover:text-brand-dark transition-all cursor-pointer font-black text-xs">WA</a>
                     </div>
                 </div>
             </div>
-            <div class="pt-12 text-center text-[10px] font-bold text-white/20 uppercase tracking-[0.4em]">
+            <div class="pt-12 text-center text-[11px] font-bold text-white/50 uppercase tracking-[0.4em]">
                 &copy; 2026 GUUD LIFE | RAJKRISHNA FOODS | All Rights Reserved
             </div>
         </div>
     </footer>
 
-    <!-- PRODUCT DETAIL MODAL (FIXED ALIGNMENT) -->
+    <!-- PRODUCT DETAIL MODAL -->
     <div id="productModal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4">
         <!-- Overlay -->
         <div class="absolute inset-0 bg-brand-dark/95 backdrop-blur-xl" onclick="closeModal()"></div>
@@ -192,12 +214,12 @@
         <!-- Center Box Card -->
         <div class="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl flex flex-col md:flex-row overflow-hidden animate-fade">
             <!-- Close button pinned to outer card top-right -->
-            <button onclick="closeModal()" class="absolute top-6 right-6 z-50 bg-brand-dark text-white p-3 rounded-full hover:bg-brand-fresh transition-colors">
+            <button onclick="closeModal()" aria-label="Close details" class="absolute top-6 right-6 z-50 bg-brand-dark text-white p-3 rounded-full hover:bg-brand-fresh transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg>
             </button>
             
             <div class="w-full md:w-1/2 bg-gray-50 p-12 flex items-center justify-center">
-                <img id="modalImg" src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto drop-shadow-2xl">
+                <img id="modalImg" src="assets/images/product/product_img.webp" alt="Product Image" class="w-full h-auto drop-shadow-2xl">
             </div>
 
             <div class="w-full md:w-1/2 p-12 space-y-6">
@@ -218,17 +240,17 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 py-6 border-y border-gray-100">
-                    <div><span class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Health Benefit</span><p id="modalBenefit" class="font-bold text-brand-dark">Superfood</p></div>
-                    <div><span class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Natural Grade</span><p class="font-bold text-brand-dark">100% Pure</p></div>
+                    <div><span id="modalBenefitLbl" class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Health Benefit</span><p id="modalBenefit" class="font-bold text-brand-dark">Superfood</p></div>
+                    <div><span id="modalGradeLbl" class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Natural Grade</span><p class="font-bold text-brand-dark">100% Pure</p></div>
                 </div>
 
                 <div class="flex items-center gap-6 pt-4">
                     <div class="flex items-center bg-gray-100 rounded-full px-4 py-2">
-                        <button onclick="updateModalQty(-1)" class="w-8 h-8 font-black text-lg">-</button>
+                        <button onclick="updateModalQty(-1)" aria-label="Decrease quantity" class="w-8 h-8 font-black text-lg">-</button>
                         <span id="modalQty" class="w-10 text-center font-black">1</span>
-                        <button onclick="updateModalQty(1)" class="w-8 h-8 font-black text-lg">+</button>
+                        <button onclick="updateModalQty(1)" aria-label="Increase quantity" class="w-8 h-8 font-black text-lg">+</button>
                     </div>
-                    <button id="modalAddBtn" class="flex-grow bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl hover:bg-brand-fresh transition-colors active:scale-95">Add to Basket</button>
+                    <button id="modalAddBtn" class="flex-grow bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl hover:bg-brand-fresh hover:text-brand-dark transition-colors active:scale-95">Add to Basket</button>
                 </div>
             </div>
         </div>
@@ -237,7 +259,7 @@
     <!-- CART SYSTEM DRAWER -->
     <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 w-full max-w-md h-full bg-white z-[250] shadow-2xl flex flex-col">
         <div class="p-8 bg-brand-dark text-white flex justify-between items-center">
-            <h3 class="text-xl font-black uppercase tracking-tighter">Your Basket</h3>
+            <h3 id="basketTitle" class="text-xl font-black uppercase tracking-tighter">Your Basket</h3>
             <button onclick="toggleCart()" class="text-brand-gold hover:scale-125 transition-transform font-black">CLOSE</button>
         </div>
         
@@ -246,20 +268,20 @@
         </div>
 
         <div id="checkoutForm" class="hidden p-8 border-t bg-gray-50 space-y-4">
-            <h4 class="font-black text-lg tracking-tighter">Shipping Information</h4>
+            <h4 id="shippingInfo" class="font-black text-lg tracking-tighter">Shipping Information</h4>
             <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 rounded-xl border-gray-200 focus:ring-brand-fresh">
             <input type="tel" id="custPhone" placeholder="Mobile Number" class="w-full p-4 rounded-xl border-gray-200">
             <textarea id="custAddr" placeholder="Delivery Address" class="w-full p-4 rounded-xl border-gray-200"></textarea>
-            <button onclick="submitOrder()" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl">Complete Order via WhatsApp</button>
-            <button onclick="toggleCheckout(false)" class="w-full text-gray-400 text-xs font-bold uppercase tracking-widest text-center mt-2">Back to Cart</button>
+            <button id="completeOrderWa" onclick="submitOrder()" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl">Complete Order via WhatsApp</button>
+            <button id="backToCart" onclick="toggleCheckout(false)" class="w-full text-gray-400 text-xs font-bold uppercase tracking-widest text-center mt-2">Back to Cart</button>
         </div>
 
         <div id="cartFooter" class="p-8 border-t space-y-6">
             <div class="flex justify-between items-center">
-                <span class="font-bold text-gray-400 uppercase text-xs tracking-widest">Subtotal</span>
+                <span id="basketSubtotal" class="font-bold text-gray-400 uppercase text-xs tracking-widest">Subtotal</span>
                 <span id="cartTotal" class="text-3xl font-black">₹0</span>
             </div>
-            <button onclick="toggleCheckout(true)" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black text-lg shadow-xl active:scale-95 transition-transform">Proceed to Checkout</button>
+            <button id="basketCheckout" onclick="toggleCheckout(true)" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black text-lg shadow-xl active:scale-95 transition-transform">Proceed to Checkout</button>
         </div>
     </div>
 
@@ -309,16 +331,160 @@
             "Black Rice": { en: "Royal grain with the highest concentration of anthocyanins.", ta: "கருப்பரிசி நோய் எதிர்ப்பு சக்தியை அதிகரிக்கும்." }
         };
 
+        const i18n = {
+            en: {
+                langBtn: "தமிழ்",
+                navProducts: "Products",
+                navContact: "Contact",
+                heroBadge: "Organic & Natural",
+                heroTitle: `Millet <br><span class="text-brand-fresh italic font-light">Superfoods.</span>`,
+                heroDesc: "Artisanal Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives—just pure goodness from Rajkrishna Foods.",
+                heroCta: "Shop Catalog",
+                menuTitle: "Our Menu",
+                menuSub: "Direct from our brochure",
+                tabAll: "All Items",
+                tabVermicelli: "Vermicelli",
+                tabNoodles: "Noodles",
+                contactHeading: `Let's connect for <br><span class="text-brand-fresh">Better Health.</span>`,
+                contactDesc: "Whether you're looking for bulk orders, dealership opportunities, or just want to talk about health, we're here.",
+                lblAddress: "Address",
+                lblCall: "Call Us",
+                lblEmail: "Email",
+                lblYourName: "Your Name",
+                lblPhone: "Phone",
+                lblMsg: "Message",
+                btnSendInquiry: "Send Inquiry",
+                basketTitle: "Your Basket",
+                basketSubtotal: "Subtotal",
+                basketCheckout: "Proceed to Checkout",
+                shippingInfo: "Shipping Information",
+                completeOrderWa: "Complete Order via WhatsApp",
+                backToCart: "Back to Cart",
+                addToBasket: "Add to Basket",
+                benefitLabel: "Health Benefit",
+                gradeLabel: "Natural Grade"
+            },
+            ta: {
+                langBtn: "English",
+                navProducts: "தயாரிப்புகள்",
+                navContact: "தொடர்பு",
+                heroBadge: "100% இயற்கை & பாரம்பரியம்",
+                heroTitle: `சிறுதானிய <br><span class="text-brand-fresh italic font-light">சூப்பர்ஃபுட்ஸ்.</span>`,
+                heroDesc: "100% இயற்கை சிறுதானியங்களால் செய்யப்பட்ட பாரம்பரிய சேமியா மற்றும் நூடுல்ஸ் வகைகள். ரசாயனங்கள், நிறமிகள் இல்லாத ஆரோக்கிய உணவு.",
+                heroCta: "பொருட்களைப் பார்க்க",
+                menuTitle: "எங்கள் தயாரிப்புகள்",
+                menuSub: "பாரம்பரிய சுவை மற்றும் சிறந்த ஆரோக்கியம்",
+                tabAll: "அனைத்தும்",
+                tabVermicelli: "சேமியா",
+                tabNoodles: "நூடுல்ஸ்",
+                contactHeading: `ஆரோக்கிய வாழ்விற்கு <br><span class="text-brand-fresh">எங்களை தொடர்பு கொள்ளவும்.</span>`,
+                contactDesc: "மொத்த வியாபாரம், விநியோகஸ்தர் வாய்ப்புகள் அல்லது ஆரோக்கியம் சார்ந்த தகவல்களுக்கு எங்களை அணுகவும்.",
+                lblAddress: "முகவரி",
+                lblCall: "அழைக்க",
+                lblEmail: "மின்னஞ்சல்",
+                lblYourName: "உங்கள் பெயர்",
+                lblPhone: "அலைபேசி எண்",
+                lblMsg: "செய்தி",
+                btnSendInquiry: "விசாரணை அனுப்ப",
+                basketTitle: "உங்கள் கூடை",
+                basketSubtotal: "மொத்தம்",
+                basketCheckout: "ஆர்டர் செய்ய",
+                shippingInfo: "டெலிவரி முகவரி விவரங்கள்",
+                completeOrderWa: "வாட்ஸ்அப் மூலம் ஆர்டர் செய்க",
+                backToCart: "மீண்டும் கூடைக்குச் செல்ல",
+                addToBasket: "கூடையில் சேர்க்க",
+                benefitLabel: "ஆரோக்கிய நன்மை",
+                gradeLabel: "இயற்கை தரம்"
+            }
+        };
+
         let cart = JSON.parse(localStorage.getItem('guud_cart_v2')) || [];
         let currentLang = 'en';
+        let currentCategory = 'All';
         let modalQty = 1;
 
-        function init() { renderProducts('All'); updateCartUI(); }
+        function applyLanguage(lang) {
+            currentLang = lang;
+            const t = i18n[lang];
+            const langBtn = document.getElementById('langBtn');
+            if (langBtn) langBtn.innerText = t.langBtn;
+            
+            // Header & Nav
+            const np = document.getElementById('navProducts'); if(np) np.innerText = t.navProducts;
+            const nc = document.getElementById('navContact'); if(nc) nc.innerText = t.navContact;
+            
+            // Hero
+            const hb = document.getElementById('heroBadge'); if(hb) hb.innerText = t.heroBadge;
+            const ht = document.getElementById('heroTitle'); if(ht) ht.innerHTML = t.heroTitle;
+            const hd = document.getElementById('heroDesc'); if(hd) hd.innerText = t.heroDesc;
+            const hc = document.getElementById('heroCta'); if(hc) hc.innerText = t.heroCta;
+            
+            // Catalog
+            const mt = document.getElementById('menuTitle'); if(mt) mt.innerText = t.menuTitle;
+            const ms = document.getElementById('menuSub'); if(ms) ms.innerText = t.menuSub;
+            const ta = document.getElementById('tabBtnAll'); if(ta) ta.innerText = t.tabAll;
+            const tv = document.getElementById('tabBtnVermicelli'); if(tv) tv.innerText = t.tabVermicelli;
+            const tn = document.getElementById('tabBtnNoodles'); if(tn) tn.innerText = t.tabNoodles;
+            
+            // Contact
+            const ch = document.getElementById('contactHeading'); if(ch) ch.innerHTML = t.contactHeading;
+            const cd = document.getElementById('contactDesc'); if(cd) cd.innerText = t.contactDesc;
+            const la = document.getElementById('lblAddress'); if(la) la.innerText = t.lblAddress;
+            const lc = document.getElementById('lblCall'); if(lc) lc.innerText = t.lblCall;
+            const le = document.getElementById('lblEmail'); if(le) le.innerText = t.lblEmail;
+            const ln = document.getElementById('lblYourName'); if(ln) ln.innerText = t.lblYourName;
+            const lp = document.getElementById('lblPhone'); if(lp) lp.innerText = t.lblPhone;
+            const lm = document.getElementById('lblMsg'); if(lm) lm.innerText = t.lblMsg;
+            const si = document.getElementById('btnSendInquiry'); if(si) si.innerText = t.btnSendInquiry;
+            
+            // Basket
+            const bt = document.getElementById('basketTitle'); if(bt) bt.innerText = t.basketTitle;
+            const bs = document.getElementById('basketSubtotal'); if(bs) bs.innerText = t.basketSubtotal;
+            const bc = document.getElementById('basketCheckout'); if(bc) bc.innerText = t.basketCheckout;
+            const ship = document.getElementById('shippingInfo'); if(ship) ship.innerText = t.shippingInfo;
+            const cwa = document.getElementById('completeOrderWa'); if(cwa) cwa.innerText = t.completeOrderWa;
+            const btc = document.getElementById('backToCart'); if(btc) btc.innerText = t.backToCart;
+            const mab = document.getElementById('modalAddBtn'); if(mab) mab.innerText = t.addToBasket;
+            const mbl = document.getElementById('modalBenefitLbl'); if(mbl) mbl.innerText = t.benefitLabel;
+            const mgl = document.getElementById('modalGradeLbl'); if(mgl) mgl.innerText = t.gradeLabel;
+
+            renderProducts(currentCategory);
+            updateCartUI();
+        }
+
+        function toggleLang() {
+            applyLanguage(currentLang === 'en' ? 'ta' : 'en');
+        }
+
+        function init() { 
+            applyLanguage('en'); 
+            updateCartUI(); 
+
+            // Setup contact form submission via WhatsApp
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('inqName')?.value || '';
+                    const phone = document.getElementById('inqPhone')?.value || '';
+                    const msg = document.getElementById('inqMsg')?.value || '';
+                    if (!name || !phone) {
+                        alert("Please fill your name and phone number.");
+                        return;
+                    }
+                    const text = `New Inquiry from GUUD LIFE Website:\n\nName: ${name}\nPhone: ${phone}\nMessage: ${msg || 'Interested in Millet products / dealership'}`;
+                    window.open(`https://wa.me/919962867894?text=${encodeURIComponent(text)}`, '_blank');
+                });
+            }
+        }
 
         function renderProducts(category) {
+            currentCategory = category;
             const grid = document.getElementById('productGrid');
+            if (!grid) return;
             grid.innerHTML = '';
             const filtered = category === 'All' ? products : products.filter(p => p.cat === category);
+            const catLabel = (c) => currentLang === 'ta' ? (c === 'Vermicelli' ? 'சேமியா' : 'நூடுல்ஸ்') : c;
             
             filtered.forEach(p => {
                 const card = document.createElement('div');
@@ -327,16 +493,16 @@
                 
                 card.innerHTML = `
                     <div class="aspect-square bg-gray-50 rounded-[2rem] mb-6 relative overflow-hidden flex items-center justify-center p-8">
-                        <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-700">
+                        <img src="assets/images/product/product_img.webp" alt="${p.name}" class="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute top-4 right-4 bg-brand-dark text-brand-gold px-3 py-1 rounded-full text-[10px] font-black shadow-sm">${p.size}</div>
                     </div>
                     <div class="flex-grow">
-                        <span class="text-[9px] font-black text-brand-fresh uppercase tracking-widest">${p.cat}</span>
+                        <span class="text-[9px] font-black text-brand-fresh uppercase tracking-widest">${catLabel(p.cat)}</span>
                         <h4 class="text-lg font-bold mt-1 min-h-[3rem] leading-tight">${currentLang === 'en' ? p.name : p.nameTa}</h4>
                     </div>
                     <div class="flex items-center justify-between mt-6">
                         <span class="text-2xl font-black">₹${p.price}</span>
-                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" class="bg-brand-dark text-white p-4 rounded-2xl hover:bg-brand-fresh transition-colors group-hover:scale-105 transform">
+                        <button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" aria-label="Add to basket" class="bg-brand-dark text-white p-4 rounded-2xl hover:bg-brand-fresh hover:text-brand-dark transition-colors group-hover:scale-105 transform">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5v14"/></svg>
                         </button>
                     </div>
@@ -345,8 +511,29 @@
             });
         }
 
+        function filterProducts(cat, btn) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(b => { 
+                b.classList.remove('tab-active'); 
+                b.classList.add('text-gray-500'); 
+            });
+            if (btn) {
+                btn.classList.add('tab-active');
+                btn.classList.remove('text-gray-500');
+            } else {
+                const idMap = { 'All': 'tabBtnAll', 'Vermicelli': 'tabBtnVermicelli', 'Noodles': 'tabBtnNoodles' };
+                const b = document.getElementById(idMap[cat]);
+                if (b) {
+                    b.classList.add('tab-active');
+                    b.classList.remove('text-gray-500');
+                }
+            }
+            renderProducts(cat);
+        }
+
         function openModal(id) {
             const p = products.find(x => x.id === id);
+            if (!p) return;
             const milletKey = Object.keys(milletKnowledge).find(k => p.name.includes(k));
             const info = milletKnowledge[milletKey] || { en: "Organic millet based meal.", ta: "ஆரோக்கியமான சிறுதானிய உணவு." };
             
@@ -356,7 +543,7 @@
             document.getElementById('modalTitleTa').innerText = p.nameTa;
             document.getElementById('modalPrice').innerText = `₹${p.price}`;
             document.getElementById('modalSize').innerText = p.size;
-            document.getElementById('modalCat').innerText = p.cat;
+            document.getElementById('modalCat').innerText = currentLang === 'ta' ? (p.cat === 'Vermicelli' ? 'சேமியா' : 'நூடுல்ஸ்') : p.cat;
             document.getElementById('modalDescEn').innerText = info.en;
             document.getElementById('modalDescTa').innerText = info.ta;
             document.getElementById('modalBenefit').innerText = p.benefit;
@@ -370,6 +557,7 @@
 
         function addToCart(id, qty) {
             const p = products.find(x => x.id === id);
+            if (!p) return;
             const exists = cart.find(i => i.id === id);
             if(exists) exists.qty += qty; else cart.push({...p, qty});
             saveCart();
@@ -382,6 +570,7 @@
             const container = document.getElementById('cartItems');
             const totalEl = document.getElementById('cartTotal');
             const countEl = document.getElementById('cartCount');
+            if (!container || !totalEl || !countEl) return;
             container.innerHTML = '';
             let total = 0, count = 0;
 
@@ -392,16 +581,16 @@
                 el.className = 'flex items-center gap-4 bg-gray-50 p-4 rounded-2xl animate-fade';
                 el.innerHTML = `
                     <div class="w-16 h-16 bg-white rounded-xl overflow-hidden flex items-center justify-center p-2">
-                        <img src="https://github.com/guudlife26-commits/guudlife/blob/main/product_img.webp?raw=true" class="w-full h-auto">
+                        <img src="assets/images/product/product_img.webp" alt="${item.name}" class="w-full h-auto">
                     </div>
                     <div class="flex-grow">
                         <h5 class="font-bold text-sm leading-tight">${currentLang === 'en' ? item.name : item.nameTa}</h5>
                         <p class="font-black text-brand-dark">₹${item.price}</p>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button onclick="changeQty(${item.id}, -1)" class="w-7 h-7 border rounded-full font-bold">-</button>
+                        <button onclick="changeQty(${item.id}, -1)" aria-label="Decrease" class="w-7 h-7 border rounded-full font-bold flex items-center justify-center hover:bg-gray-200">-</button>
                         <span class="font-bold text-sm">${item.qty}</span>
-                        <button onclick="changeQty(${item.id}, 1)" class="w-7 h-7 border rounded-full font-bold">+</button>
+                        <button onclick="changeQty(${item.id}, 1)" aria-label="Increase" class="w-7 h-7 border rounded-full font-bold flex items-center justify-center hover:bg-gray-200">+</button>
                     </div>
                 `;
                 container.appendChild(el);
@@ -413,6 +602,7 @@
 
         function changeQty(id, delta) {
             const item = cart.find(i => i.id === id);
+            if (!item) return;
             item.qty += delta;
             if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
             saveCart();
@@ -420,6 +610,7 @@
 
         function toggleCart(open = null) {
             const drawer = document.getElementById('cartDrawer');
+            if(!drawer) return;
             if(open === true) drawer.classList.add('open');
             else if(open === false) drawer.classList.remove('open');
             else drawer.classList.toggle('open');
@@ -427,41 +618,31 @@
         }
 
         function toggleCheckout(isCheck) {
-            document.getElementById('checkoutForm').classList.toggle('hidden', !isCheck);
-            document.getElementById('cartFooter').classList.toggle('hidden', isCheck);
-            document.getElementById('cartItems').classList.toggle('hidden', isCheck);
+            const cf = document.getElementById('checkoutForm');
+            const footer = document.getElementById('cartFooter');
+            const items = document.getElementById('cartItems');
+            if(cf) cf.classList.toggle('hidden', !isCheck);
+            if(footer) footer.classList.toggle('hidden', isCheck);
+            if(items) items.classList.toggle('hidden', isCheck);
         }
 
         function submitOrder() {
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const addr = document.getElementById('custAddr').value;
+            const name = document.getElementById('custName')?.value;
+            const phone = document.getElementById('custPhone')?.value;
+            const addr = document.getElementById('custAddr')?.value;
             if(!name || !phone || !addr) return alert("Please fill shipping details");
 
             let itemsTxt = "New Order from GUUD LIFE Website:\n\n";
             cart.forEach(i => itemsTxt += `• ${i.name} (${i.size}) x ${i.qty} = ₹${i.price * i.qty}\n`);
-            itemsTxt += `\nTotal Amount: ${document.getElementById('cartTotal').innerText}`;
+            itemsTxt += `\nTotal Amount: ${document.getElementById('cartTotal')?.innerText || '₹0'}`;
             itemsTxt += `\n\nShipping To:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
 
-            window.open(`https://wa.me/919962867894?text=${encodeURIComponent(itemsTxt)}`);
+            window.open(`https://wa.me/919962867894?text=${encodeURIComponent(itemsTxt)}`, '_blank');
 
             cart = [];
             saveCart();
             toggleCart(false);
             alert("Thank you! Your order details have been prepared for WhatsApp.");
-        }
-
-        function toggleLang() {
-            currentLang = currentLang === 'en' ? 'ta' : 'en';
-            document.getElementById('langBtn').innerText = currentLang === 'en' ? 'தமிழ்' : 'English';
-            renderProducts(document.querySelector('.tab-active').innerText.includes('Vermicelli') ? 'Vermicelli' : (document.querySelector('.tab-active').innerText.includes('Noodles') ? 'Noodles' : 'All'));
-        }
-
-        function filterProducts(cat) {
-            document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.remove('tab-active'); btn.classList.add('text-gray-500'); });
-            event.target.classList.add('tab-active');
-            event.target.classList.remove('text-gray-500');
-            renderProducts(cat);
         }
 
         window.onload = init;

@@ -1,0 +1,16 @@
+# Credentials & sensitive files
+client_assets/
+*Credentials*
+*credential*
+*.txt
+*.env*
+.env
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
