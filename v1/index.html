@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUUD LIFE | Premium Millet Nutrition | Rajkrishna Foods</title>
+    <meta name="description" content="GUUD LIFE by Rajkrishna Foods - Artisanal Millet Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives. Health is Wealth.">
+    <link rel="canonical" href="https://guudlife.in/">
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://guudlife.in/">
+    <meta property="og:title" content="GUUD LIFE | Premium Millet Nutrition | Rajkrishna Foods">
+    <meta property="og:description" content="Artisanal Millet Vermicelli and Noodles crafted from 100% natural ancient grains. 100% Natural & Healthy.">
+    <meta property="og:image" content="https://guudlife.in/assets/images/product/product_img.webp">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://guudlife.in/">
+    <meta property="twitter:title" content="GUUD LIFE | Premium Millet Nutrition">
+    <meta property="twitter:description" content="Artisanal Millet Vermicelli and Noodles crafted from 100% natural ancient grains.">
+    <meta property="twitter:image" content="https://guudlife.in/assets/images/product/product_img.webp">
+
+    <link rel="icon" type="image/webp" href="assets/images/guudlife_logo.webp">
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --p-dark: #0c3314;    /* Primary Dark Green */
+            --s-fresh: #84e691;   /* Secondary Fresh Green */
+            --a-gold: #ffde5d;    /* Accent Gold */
+            --white: #ffffff;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fdfdfb; color: var(--p-dark); }
+        
+        .bg-brand-dark { background-color: var(--p-dark); }
+        .text-brand-gold { color: var(--a-gold); }
+        .text-brand-fresh { color: var(--s-fresh); }
+        
+        /* Custom UI Components */
+        .glass-nav { background: rgba(12, 51, 20, 0.95); backdrop-filter: blur(10px); }
+        .product-card { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(12, 51, 20, 0.06); }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -15px rgba(12, 51, 20, 0.12); border-color: rgba(132, 230, 145, 0.4); }
+        
+        .cart-drawer { transition: transform 0.5s cubic-bezier(0.85, 0, 0.15, 1); transform: translateX(100%); }
+        .cart-drawer.open { transform: translateX(0); }
+        
+        .tab-active { background: var(--p-dark); color: var(--a-gold); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--p-dark); border-radius: 10px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    
+        /* Card Gallery Controls & Auto Hover Swap */
+        .card-gallery-btn {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card:hover .card-gallery-btn {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        .product-card .card-hover-primary {
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .product-card:hover .card-hover-primary {
+            opacity: 0 !important;
+            transform: scale(0.95);
+        }
+        .product-card .card-hover-secondary {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            transform: scale(0.95);
+        }
+        .product-card:hover .card-hover-secondary {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-[100] glass-nav text-white py-4 px-6 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-4">
+                <img src="assets/images/guudlife_logo.webp" alt="GUUD LIFE - Health is Wealth" class="h-12 w-auto object-contain">
+                <span class="sr-only">GUUD LIFE - Health is Wealth</span>
+            </a>
+            
+            <div class="flex items-center gap-4 md:gap-8">
+                <a href="#catalog" id="navProducts" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Products</a>
+                <a href="#contact" id="navContact" class="hidden md:block text-sm font-bold hover:text-brand-gold transition-colors">Contact</a>
+                <button onclick="toggleLang()" id="langBtn" class="text-xs font-black border-2 border-brand-gold text-brand-gold px-4 py-2 rounded-full hover:bg-brand-gold hover:text-brand-dark transition-all">தமிழ்</button>
+                
+                <button onclick="toggleCart()" class="relative group p-2 bg-white/5 rounded-full" aria-label="Open Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-gold text-brand-dark text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative bg-brand-dark text-white pt-20 pb-32 px-6 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-fresh/5 rounded-full blur-[120px] -mr-40 -mt-40"></div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="space-y-8 animate-fade">
+                <span id="heroBadge" class="inline-block bg-brand-gold/10 text-brand-gold px-4 py-2 rounded-full text-xs font-bold tracking-[0.3em] uppercase border border-brand-gold/20">Organic & Natural</span>
+                <h2 id="heroTitle" class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9]">Millet <br><span class="text-brand-fresh italic font-light">Superfoods.</span></h2>
+                <p id="heroDesc" class="text-white/60 text-lg max-w-md leading-relaxed">Artisanal Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives—just pure goodness from Rajkrishna Foods.</p>
+                <div class="flex gap-4">
+                    <a href="#catalog" id="heroCta" class="bg-brand-gold text-brand-dark px-10 py-5 rounded-full font-black text-lg hover:scale-105 transition-transform shadow-xl">Shop Catalog</a>
+                </div>
+            </div>
+            <div class="relative animate-fade" style="animation-delay: 0.2s">
+                <div class="absolute inset-0 bg-brand-gold/20 rounded-[60px] rotate-6 blur-2xl"></div>
+                <img src="assets/images/product/product_img.webp" alt="GUUD LIFE Millet Superfood Pack" class="relative rounded-[50px] shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-700">
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT CATALOG -->
+    <section id="catalog" class="max-w-7xl mx-auto px-6 py-24">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
+            <div class="space-y-2">
+                <h3 id="menuTitle" class="text-5xl font-black tracking-tighter uppercase">Our Menu</h3>
+                <p id="menuSub" class="text-gray-400 font-bold uppercase tracking-widest text-xs">Direct from our brochure</p>
+            </div>
+            <div class="flex bg-gray-100 p-1 rounded-full w-full md:w-auto">
+                <button id="tabBtnAll" onclick="filterProducts('All', this)" class="tab-btn tab-active px-8 py-3 rounded-full font-black text-sm transition-all flex-1 md:flex-none">All Items</button>
+                <button id="tabBtnVermicelli" onclick="filterProducts('Vermicelli', this)" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Vermicelli</button>
+                <button id="tabBtnNoodles" onclick="filterProducts('Noodles', this)" class="tab-btn px-8 py-3 rounded-full font-black text-sm text-gray-500 transition-all flex-1 md:flex-none">Noodles</button>
+            </div>
+        </div>
+
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="bg-gray-50 py-24 px-6 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div>
+                <img src="assets/images/guudlife_logo.webp" alt="GUUD LIFE Logo" class="h-16 mb-8 brightness-0 opacity-80">
+                <h3 id="contactHeading" class="text-4xl font-black tracking-tighter mb-6">Let's connect for <br><span class="text-brand-fresh">Better Health.</span></h3>
+                <p id="contactDesc" class="text-gray-500 max-w-md mb-12">Whether you're looking for bulk orders, dealership opportunities, or just want to talk about health, we're here.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <p id="lblAddress" class="text-xs font-black text-gray-400 uppercase tracking-widest">Address</p>
+                            <p class="font-bold">G.N. Patti, Virudhunagar - 626 005, TN.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div>
+                            <p id="lblCall" class="text-xs font-black text-gray-400 uppercase tracking-widest">Call Us</p>
+                            <a href="tel:+919962867894" class="font-bold hover:text-brand-fresh transition-colors">+91 99628 67894</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-6 group">
+                        <div class="w-12 h-12 bg-brand-dark text-brand-gold rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </div>
+                        <div>
+                            <p id="lblEmail" class="text-xs font-black text-gray-400 uppercase tracking-widest">Email</p>
+                            <a href="mailto:guudlife26@gmail.com" class="font-bold hover:text-brand-fresh transition-colors">guudlife26@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-[40px] shadow-2xl shadow-brand-dark/5">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label id="lblYourName" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Your Name</label>
+                            <input type="text" id="inqName" required placeholder="John Doe" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label id="lblPhone" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone</label>
+                            <input type="tel" id="inqPhone" required placeholder="+91" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label id="lblMsg" class="text-[10px] font-black uppercase tracking-widest text-gray-400">Message</label>
+                        <textarea id="inqMsg" rows="4" placeholder="How can we help?" class="w-full bg-gray-50 border-none p-4 rounded-xl focus:ring-2 focus:ring-brand-fresh transition-all"></textarea>
+                    </div>
+                    <button type="submit" id="btnSendInquiry" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black hover:bg-brand-fresh hover:text-brand-dark transition-all active:scale-95">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark text-white pt-24 pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 pb-20 border-b border-white/5">
+                <div class="md:col-span-2 space-y-6">
+                    <img src="assets/images/guudlife_logo.webp" alt="GUUD LIFE Logo" class="h-16 brightness-110">
+                    <p class="text-white/60 max-w-sm leading-relaxed">Rajkrishna Foods is dedicated to reviving traditional millet grains for the modern dinner table. Our mission is to make health accessible and delicious.</p>
+                </div>
+                <div>
+                    <h4 class="text-brand-gold font-black uppercase tracking-widest text-xs mb-8">Navigation</h4>
+                    <ul class="space-y-4 text-white/70 font-bold text-sm">
+                        <li><a href="#" class="hover:text-brand-fresh transition-colors">Home</a></li>
+                        <li><a href="#catalog" class="hover:text-brand-fresh transition-colors">All Products</a></li>
+                        <li><a href="#contact" class="hover:text-brand-fresh transition-colors">Contact Us</a></li>
+                        <li><a href="https://wa.me/919962867894" target="_blank" class="hover:text-brand-fresh transition-colors">Wholesale</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-brand-gold font-black uppercase tracking-widest text-xs mb-8">Social Presence</h4>
+                    <div class="flex gap-4">
+                        <a href="https://wa.me/919962867894" target="_blank" aria-label="WhatsApp" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center hover:bg-brand-fresh hover:text-brand-dark transition-all cursor-pointer font-black text-xs">WA</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-12 text-center text-[11px] font-bold text-white/50 uppercase tracking-[0.4em]">
+                &copy; 2026 GUUD LIFE | RAJKRISHNA FOODS | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT DETAIL MODAL (PHASE 7 REDESIGN) -->
+    <div id="productModal" class="fixed inset-0 z-[200] hidden flex items-center justify-center p-4">
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-brand-dark/95 backdrop-blur-xl" onclick="closeModal()"></div>
+        
+        <!-- Center Box Card -->
+        <div class="relative w-full max-w-4xl bg-white rounded-[32px] md:rounded-[40px] shadow-2xl flex flex-col md:flex-row overflow-hidden max-h-[92vh] md:max-h-[85vh] animate-fade">
+            <!-- Close button pinned to outer card top-right -->
+            <button onclick="closeModal()" aria-label="Close details" class="absolute top-5 right-5 z-50 bg-brand-dark text-white p-3 rounded-full hover:bg-brand-fresh hover:text-brand-dark transition-colors shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+            
+            <!-- Left Column: Gallery & Thumbnails -->
+            <div class="w-full md:w-1/2 bg-gray-50 p-6 md:p-10 flex flex-col justify-between items-center border-b md:border-b-0 md:border-r border-gray-100 relative">
+                <!-- Clickable main preview opening Lightbox -->
+                <div class="relative w-full flex-grow flex items-center justify-center min-h-[220px] md:min-h-[280px] group cursor-pointer" onclick="openLightboxFromModal()">
+                    <img id="modalImg" src="assets/images/product/product_img.webp" alt="Product Image" class="max-h-[240px] md:max-h-[300px] w-auto object-contain drop-shadow-xl transition-transform duration-300 group-hover:scale-105">
+                    
+                    <span class="absolute bottom-2 right-2 bg-brand-dark/80 hover:bg-brand-dark text-white text-[10px] font-bold px-3 py-1.5 rounded-full backdrop-blur-sm flex items-center gap-1.5 opacity-90 transition-opacity">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+                        <span id="modalZoomLbl">Fullscreen</span>
+                    </span>
+                </div>
+
+                <!-- Thumbnails Strip (dynamically populated) -->
+                <div id="modalThumbs" class="w-full flex justify-center gap-3 mt-4 pt-3 border-t border-gray-200/60 overflow-x-auto py-1">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Right Column: Product Information -->
+            <div class="w-full md:w-1/2 p-6 md:p-10 space-y-5 overflow-y-auto max-h-[55vh] md:max-h-[85vh]">
+                <div>
+                    <div class="flex items-center gap-2 mb-2 flex-wrap">
+                        <span id="modalCat" class="text-brand-fresh font-black uppercase tracking-widest text-[10px]">Category</span>
+                        <span id="modalVerifiedBadge" class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-emerald-200 inline-flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span id="modalBrochureVerifiedLbl">100% Verified Brochure Data</span>
+                        </span>
+                    </div>
+                    <h2 id="modalTitle" class="text-3xl md:text-4xl font-black tracking-tighter leading-tight">Product Name</h2>
+                    <h3 id="modalTitleTa" class="text-lg md:text-xl font-bold text-gray-400 mt-1">தமிழ் பெயர்</h3>
+                </div>
+
+                <!-- Price & Weights -->
+                <div class="flex items-baseline gap-3 pb-3 border-b border-gray-100 flex-wrap">
+                    <span id="modalPrice" class="text-3xl font-black text-brand-dark">₹0</span>
+                    <span id="modalMrp" class="text-sm line-through text-gray-400 font-bold hidden">MRP ₹90</span>
+                    <span id="modalSize" class="bg-gray-100 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-gray-500">000g</span>
+                    <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">In Stock</span>
+                </div>
+
+                <!-- Descriptions -->
+                <div class="space-y-2">
+                    <p id="modalDescEn" class="text-gray-600 leading-relaxed text-sm"></p>
+                    <p id="modalDescTa" class="text-gray-400 font-bold leading-relaxed text-sm italic"></p>
+                </div>
+
+                <!-- Verified Ingredients & Prep -->
+                <div id="modalIngredientsBox" class="bg-gray-50 rounded-2xl p-4 text-xs space-y-1.5 border border-gray-100">
+                    <div class="flex items-center gap-1.5 font-black text-brand-dark uppercase tracking-widest text-[10px]" id="modalIngLblWrap">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        <span id="modalIngLbl">Ingredients & Highlights</span>
+                    </div>
+                    <p id="modalIngredients" class="text-gray-600 leading-relaxed"></p>
+                </div>
+
+                <!-- Health Benefits Grid -->
+                <div class="grid grid-cols-2 gap-4 py-4 border-y border-gray-100">
+                    <div>
+                        <span id="modalBenefitLbl" class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Health Benefit</span>
+                        <p id="modalBenefit" class="font-bold text-brand-dark text-sm mt-0.5">Superfood</p>
+                    </div>
+                    <div>
+                        <span id="modalGradeLbl" class="text-[9px] uppercase font-black text-gray-400 tracking-widest">Natural Grade</span>
+                        <p id="modalGradeVal" class="font-bold text-brand-dark text-sm mt-0.5">100% Ancient Grain</p>
+                    </div>
+                </div>
+
+                <!-- Quantity & Add to Cart -->
+                <div class="flex items-center gap-4 pt-2">
+                    <div class="flex items-center bg-gray-100 rounded-full px-3 py-2 border border-gray-200">
+                        <button onclick="updateModalQty(-1)" aria-label="Decrease quantity" class="w-8 h-8 font-black text-lg flex items-center justify-center hover:bg-gray-200 rounded-full transition-colors">-</button>
+                        <span id="modalQty" class="w-10 text-center font-black">1</span>
+                        <button onclick="updateModalQty(1)" aria-label="Increase quantity" class="w-8 h-8 font-black text-lg flex items-center justify-center hover:bg-gray-200 rounded-full transition-colors">+</button>
+                    </div>
+                    <button id="modalAddBtn" class="flex-grow bg-brand-dark text-brand-gold py-4 px-6 rounded-2xl font-black shadow-xl hover:bg-brand-fresh hover:text-brand-dark transition-all active:scale-95 flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                        <span id="modalAddBtnText">Add to Basket</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX IMAGE GALLERY (PHASE 6) -->
+    <div id="lightboxModal" class="fixed inset-0 z-[300] hidden flex items-center justify-center p-4 bg-black/95 backdrop-blur-md select-none transition-opacity duration-300">
+        <!-- Overlay -->
+        <div class="absolute inset-0" onclick="closeLightbox()"></div>
+
+        <!-- Top Header Bar -->
+        <div class="absolute top-5 left-5 right-5 flex justify-between items-center z-50 text-white pointer-events-none">
+            <div class="flex items-center gap-3 pointer-events-auto">
+                <span id="lbCounter" class="bg-white/10 px-3.5 py-1.5 rounded-full text-xs font-black tracking-widest uppercase border border-white/10">1 / 3</span>
+                <span id="lbTitle" class="text-sm font-bold text-white/90 hidden sm:inline">Product Name</span>
+            </div>
+            <button onclick="closeLightbox()" aria-label="Close Lightbox" class="p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors pointer-events-auto backdrop-blur-sm border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <!-- Main Lightbox Image with Left & Right Arrows -->
+        <div class="relative z-40 max-w-5xl max-h-[85vh] flex items-center justify-center" id="lbImageContainer">
+            <button id="lbPrevBtn" onclick="prevLightboxImg()" aria-label="Previous Image" class="absolute -left-3 sm:-left-16 bg-white/10 hover:bg-brand-gold hover:text-brand-dark text-white p-3 sm:p-4 rounded-full transition-all backdrop-blur-sm z-50 border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+
+            <img id="lbImg" src="" alt="Enlarged product image" class="max-h-[75vh] max-w-[85vw] object-contain rounded-2xl shadow-2xl transition-all duration-300">
+
+            <button id="lbNextBtn" onclick="nextLightboxImg()" aria-label="Next Image" class="absolute -right-3 sm:-right-16 bg-white/10 hover:bg-brand-gold hover:text-brand-dark text-white p-3 sm:p-4 rounded-full transition-all backdrop-blur-sm z-50 border border-white/10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+
+        <!-- Caption / Source note -->
+        <div id="lbCaption" class="absolute bottom-6 text-center text-xs text-white/60 font-medium px-4"></div>
+    </div>
+
+    <!-- CART SYSTEM DRAWER -->
+    <div id="cartDrawer" class="cart-drawer fixed top-0 right-0 w-full max-w-md h-full bg-white z-[250] shadow-2xl flex flex-col">
+        <div class="p-8 bg-brand-dark text-white flex justify-between items-center">
+            <h3 id="basketTitle" class="text-xl font-black uppercase tracking-tighter">Your Basket</h3>
+            <button onclick="toggleCart()" class="text-brand-gold hover:scale-125 transition-transform font-black">CLOSE</button>
+        </div>
+        
+        <div id="cartItems" class="flex-grow overflow-y-auto p-8 space-y-6">
+            <!-- Items injected by JS -->
+        </div>
+
+        <div id="checkoutForm" class="hidden p-8 border-t bg-gray-50 space-y-4">
+            <h4 id="shippingInfo" class="font-black text-lg tracking-tighter">Shipping Information</h4>
+            <input type="text" id="custName" placeholder="Full Name" class="w-full p-4 rounded-xl border-gray-200 focus:ring-brand-fresh">
+            <input type="tel" id="custPhone" placeholder="Mobile Number" class="w-full p-4 rounded-xl border-gray-200">
+            <textarea id="custAddr" placeholder="Delivery Address" class="w-full p-4 rounded-xl border-gray-200"></textarea>
+            <button id="completeOrderWa" onclick="submitOrder()" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black shadow-xl">Complete Order via WhatsApp</button>
+            <button id="backToCart" onclick="toggleCheckout(false)" class="w-full text-gray-400 text-xs font-bold uppercase tracking-widest text-center mt-2">Back to Cart</button>
+        </div>
+
+        <div id="cartFooter" class="p-8 border-t space-y-6">
+            <div class="flex justify-between items-center">
+                <span id="basketSubtotal" class="font-bold text-gray-400 uppercase text-xs tracking-widest">Subtotal</span>
+                <span id="cartTotal" class="text-3xl font-black">₹0</span>
+            </div>
+            <button id="basketCheckout" onclick="toggleCheckout(true)" class="w-full bg-brand-dark text-brand-gold py-5 rounded-2xl font-black text-lg shadow-xl active:scale-95 transition-transform">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        // COMPREHENSIVE VERIFIED PRODUCT DATABASE (PHASE 8)
+        const products = [
+            { 
+                id: 1, 
+                name: "Wheat Vermicelli", 
+                nameTa: "கோதுமை சேமியா", 
+                cat: "Vermicelli", 
+                price: 30, 
+                size: "180g", 
+                benefit: "High Energy",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Traditional whole wheat goodness with high energy and natural dietary fiber.",
+                descTa: "பாரம்பரிய கோதுமையின் சத்துக்கள் மற்றும் அதிக ஆற்றல் நிறைந்தது.",
+                ingredients: "100% Whole Wheat Flour, Purified RO Water, Salt. No preservatives.",
+                available: true
+            },
+            { 
+                id: 2, 
+                name: "Finger Millet Vermicelli", 
+                nameTa: "ராகி சேமியா", 
+                cat: "Vermicelli", 
+                price: 30, 
+                size: "180g", 
+                benefit: "Bone Strength",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Extremely rich in Calcium and natural Protein. Best for growing children and bone density.",
+                descTa: "ராகியில் கால்சியம் அதிகம் உள்ளது. வளரும் குழந்தைகளுக்கு சிறந்தது.",
+                ingredients: "Finger Millet (Ragi) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 3, 
+                name: "Pearl Millet Vermicelli", 
+                nameTa: "கம்பு சேமியா", 
+                cat: "Vermicelli", 
+                price: 30, 
+                size: "180g", 
+                benefit: "Iron Rich",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "High in Iron and Magnesium. Helps reduce body heat and boost stamina.",
+                descTa: "இரும்புச்சத்து நிறைந்தது. உடல் சூட்டை குறைக்கும்.",
+                ingredients: "Pearl Millet (Kambu) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 4, 
+                name: "Sorghum Vermicelli", 
+                nameTa: "சோளம் சேமியா", 
+                cat: "Vermicelli", 
+                price: 30, 
+                size: "180g", 
+                benefit: "Heart Health",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Heart-healthy grain that is easy on digestion and rich in antioxidants.",
+                descTa: "இதய ஆரோக்கியத்திற்கு மற்றும் செரிமானத்திற்கு சிறந்தது.",
+                ingredients: "Sorghum (Cholam) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 5, 
+                name: "Foxtail Millet Vermicelli", 
+                nameTa: "திணை சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Nervous Health",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Excellent for nervous system health, radiant skin, and natural energy.",
+                descTa: "நரம்பு மண்டல ஆரோக்கியத்திற்கு மற்றும் பளபளப்பான சருமத்திற்கு சிறந்தது.",
+                ingredients: "Foxtail Millet (Thinai) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 6, 
+                name: "MultiMillet Vermicelli", 
+                nameTa: "நவதானிய சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Immunity Boost",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "A power-packed blend of 9 essential millet grains for complete balanced nutrition.",
+                descTa: "9 வகையான சிறுதானியங்களின் சரிவிகித கலவை. நோய் எதிர்ப்பு சக்தியை கூட்டும்.",
+                ingredients: "Multi-millet blend (Ragi, Kambu, Cholam, Thinai, Samai, Varagu, Kuthiraivali, Soya, Rajma), RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 7, 
+                name: "Little Millet Vermicelli", 
+                nameTa: "சாமை சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Metabolism",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Highly efficient in regulating hormones, lipid clearance, and healthy metabolism.",
+                descTa: "ஹார்மோன் மற்றும் வளர்சிதை மாற்றத்திற்கு சிறந்தது.",
+                ingredients: "Little Millet (Samai) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 8, 
+                name: "Kodo Millet Vermicelli", 
+                nameTa: "வரகு சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Antioxidant",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Loaded with antioxidants and polyphenols for longevity and liver support.",
+                descTa: "ஆன்டி-ஆக்ஸிடன்ட்டுகள் நிறைந்தது. இரத்தத்தை சுத்திகரிக்க உதவும்.",
+                ingredients: "Kodo Millet (Varagu) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 9, 
+                name: "Barnyard Millet Vermicelli", 
+                nameTa: "குதிரைவாலி சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Blood Sugar",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Perfect for weight management, gut health, and stabilizing blood sugar levels.",
+                descTa: "உடல் எடையை குறைக்க மற்றும் இரத்த சர்க்கரையை கட்டுக்குள் வைக்க உதவும்.",
+                ingredients: "Barnyard Millet (Kuthiraivali) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 10, 
+                name: "Soya Vermicelli", 
+                nameTa: "சோயா சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "High Protein",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Highest plant-based protein content for lean muscle growth and sustained stamina.",
+                descTa: "தாவர அடிப்படையிலான அதிக புரதச்சத்து கொண்டது. தசை வலிமைக்கு சிறந்தது.",
+                ingredients: "Defatted Soya Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 11, 
+                name: "Rajma Vermicelli", 
+                nameTa: "ராஜ்மா சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Fiber Rich",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Excellent source of complex fiber and mineral energy from red kidney beans.",
+                descTa: "நார்ச்சத்து மற்றும் ஆற்றல் நிறைந்தது.",
+                ingredients: "Red Kidney Bean (Rajma) Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 12, 
+                name: "Red Rice Vermicelli", 
+                nameTa: "சிவப்பரிசி சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Detoxification",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Natural detoxifying grain that improves blood circulation and heart health.",
+                descTa: "இரத்த ஓட்டத்தை சீராக்க மற்றும் நச்சுக்களை வெளியேற்ற உதவும்.",
+                ingredients: "Heritage Red Rice Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 13, 
+                name: "Black Rice Vermicelli", 
+                nameTa: "கருப்பரிசி சேமியா", 
+                cat: "Vermicelli", 
+                price: 40, 
+                size: "180g", 
+                benefit: "Anti-Cancer",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Royal ancient grain with maximum anthocyanins for cellular protection and immunity.",
+                descTa: "கருப்பரிசி (கவுனி) நோய் எதிர்ப்பு சக்தியை அதிகரிக்கும்.",
+                ingredients: "Karuppu Kavuni Black Rice Flour, Whole Wheat Flour, RO Water, Salt.",
+                available: true
+            },
+            { 
+                id: 14, 
+                name: "Finger Millet Noodles", 
+                nameTa: "ராகி நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Calcium Rich",
+                images: [
+                    "assets/images/product/noodles_finger_millet_pack.webp",
+                    "assets/images/product/noodles_finger_millet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Authentic Ragi noodles with authentic tasty spice masala mix. 100% natural, no added MSG, no preservatives.",
+                descTa: "சுவையான இயற்கை ராகி நூடுல்ஸ் மற்றும் மசாலா பாக்கெட். நிறமிகள், அஜினோமோட்டோ இல்லாத ஆரோக்கிய உணவு.",
+                ingredients: "Noodles: Finger Millet (Ragi), Whole Wheat Flour, Edible Vegetable Oil, Salt. Masala Mix: Chilli, turmeric, coriander, pepper, ginger, garlic, cloves, cinnamon, cumin, dried vegetables, salt.",
+                available: true
+            },
+            { 
+                id: 15, 
+                name: "Pearl Millet Noodles", 
+                nameTa: "கம்பு நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Energy",
+                images: [
+                    "assets/images/product/noodles_pearl_millet_pack.webp",
+                    "assets/images/product/noodles_pearl_millet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "High-iron Kambu noodles that reduce body heat and provide sustained daily energy.",
+                descTa: "கம்பு நூடுல்ஸ் உடல் சூட்டை தணித்து நாள் முழுவதும் சுறுசுறுப்பை அளிக்கும்.",
+                ingredients: "Noodles: Pearl Millet (Kambu), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 16, 
+                name: "Sorghum Noodles", 
+                nameTa: "சோளம் நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Heart Health",
+                images: [
+                    "assets/images/product/noodles_sorghum_pack.webp",
+                    "assets/images/product/noodles_sorghum_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Sorghum (Cholam) noodles packed with dietary fiber and essential minerals.",
+                descTa: "இதய ஆரோக்கியத்திற்கும் மற்றும் எளிதான செரிமானத்திற்கும் சிறந்தது.",
+                ingredients: "Noodles: Sorghum (Cholam), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 17, 
+                name: "Foxtail Millet Noodles", 
+                nameTa: "திணை நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Vitamins",
+                images: [
+                    "assets/images/product/noodles_foxtail_pack.webp",
+                    "assets/images/product/noodles_foxtail_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Vitamin-rich Thinai noodles formulated for nervous balance and natural vitality.",
+                descTa: "வைட்டமின்கள் மற்றும் தாதுக்கள் நிறைந்தது. நரம்பு மண்டலத்திற்கு வலிமை தரும்.",
+                ingredients: "Noodles: Foxtail Millet (Thinai), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 18, 
+                name: "Little Millet Noodles", 
+                nameTa: "சாமை நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Vitality",
+                images: [
+                    "assets/images/product/noodles_little_millet_pack.webp",
+                    "assets/images/product/noodles_little_millet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Samai noodles loaded with B-complex vitamins for digestive and hormonal health.",
+                descTa: "செரிமானம் மற்றும் சுறுசுறுப்பான உடலியக்கத்திற்கு உதவும் ஆரோக்கிய உணவு.",
+                ingredients: "Noodles: Little Millet (Samai), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 19, 
+                name: "Kodo Millet Noodles", 
+                nameTa: "வரகு நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Cleanse",
+                images: [
+                    "assets/images/product/noodles_kodo_pack.webp",
+                    "assets/images/product/noodles_kodo_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Antioxidant-dense Varagu noodles aiding liver cleanse and cellular renewal.",
+                descTa: "உடலில் உள்ள நச்சுக்களை நீக்கி கல்லீரல் ஆரோக்கியத்தை காக்கும் வரகு நூடுல்ஸ்.",
+                ingredients: "Noodles: Kodo Millet (Varagu), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 20, 
+                name: "Barnyard Millet Noodles", 
+                nameTa: "குதிரைவாலி நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Digestion",
+                images: [
+                    "assets/images/product/noodles_barnyard_pack.webp",
+                    "assets/images/product/noodles_barnyard_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Low glycemic index noodles ideal for weight management and sugar control.",
+                descTa: "குறைந்த கிளைசெமிக் குறியீடு கொண்டது. எடையை கட்டுப்படுத்த உதவும்.",
+                ingredients: "Noodles: Barnyard Millet (Kuthiraivali), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 21, 
+                name: "MultiMillet Noodles", 
+                nameTa: "நவதானிய நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Whole Nutrition",
+                images: [
+                    "assets/images/product/noodles_multimillet_pack.webp",
+                    "assets/images/product/noodles_multimillet_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Multi-millet nutrition bringing together ancient grains in one wholesome meal.",
+                descTa: "நவதானியங்களின் கூட்டு சத்துக்கள் நிறைந்த முழுமையான சத்துணவு.",
+                ingredients: "Noodles: Multi-Millet Blend, Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 22, 
+                name: "Soya Noodles", 
+                nameTa: "சோயா நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Muscle Growth",
+                images: [
+                    "assets/images/product/noodles_soya_pack.webp",
+                    "assets/images/product/noodles_soya_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Plant-protein rich noodles for active fitness enthusiasts and children.",
+                descTa: "தாவர புரதம் நிறைந்தது. குழந்தைகள் மற்றும் உடற்பயிற்சி செய்பவர்களுக்கு உகந்தது.",
+                ingredients: "Noodles: Soya Beans, Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 23, 
+                name: "Rajma Noodles", 
+                nameTa: "ராஜ்மா நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Weight Control",
+                images: [
+                    "assets/images/product/noodles_rajma_pack.webp",
+                    "assets/images/product/noodles_rajma_cooked.webp",
+                    "assets/images/product/product_img.webp"
+                ],
+                descEn: "Wholesome red kidney bean noodles with high dietary fiber and iron.",
+                descTa: "ராஜ்மா பீன்ஸ் சத்துக்கள் நிறைந்த நார்ச்சத்து மிகுந்த நூடுல்ஸ்.",
+                ingredients: "Noodles: Red Kidney Beans (Rajma), Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 24, 
+                name: "Red Rice Noodles", 
+                nameTa: "சிவப்பரிசி நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Heart",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Heart-healthy traditional red rice noodles with natural detoxifying minerals.",
+                descTa: "பாரம்பரிய சிவப்பரிசி நூடுல்ஸ். இதயத்தை வலுப்படுத்த உதவும்.",
+                ingredients: "Noodles: Heritage Red Rice, Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            },
+            { 
+                id: 25, 
+                name: "Black Rice Noodles", 
+                nameTa: "கருப்பரிசி நூடுல்ஸ்", 
+                cat: "Noodles", 
+                price: 90, 
+                mrp: 90,
+                size: "200g", 
+                benefit: "Premium Detox",
+                images: ["assets/images/product/product_img.webp"],
+                descEn: "Premium Karuppu Kavuni noodles with rare anthocyanin antioxidants for total wellness.",
+                descTa: "அரிய வகை கருப்பரிசியின் அதிநவீன சத்துக்கள் கொண்ட ஆரோக்கிய நூடுல்ஸ்.",
+                ingredients: "Noodles: Karuppu Kavuni Black Rice, Whole Wheat Flour, Edible Vegetable Oil, Salt. Tastemaker Masala included.",
+                available: true
+            }
+        ];
+
+        const i18n = {
+            en: {
+                langBtn: "தமிழ்",
+                navProducts: "Products",
+                navContact: "Contact",
+                heroBadge: "Organic & Natural",
+                heroTitle: `Millet <br><span class="text-brand-fresh italic font-light">Superfoods.</span>`,
+                heroDesc: "Artisanal Vermicelli and Noodles crafted from 100% natural ancient grains. No preservatives, no additives—just pure goodness from Rajkrishna Foods.",
+                heroCta: "Shop Catalog",
+                menuTitle: "Our Menu",
+                menuSub: "Direct from our brochure",
+                tabAll: "All Items",
+                tabVermicelli: "Vermicelli",
+                tabNoodles: "Noodles",
+                contactHeading: `Let's connect for <br><span class="text-brand-fresh">Better Health.</span>`,
+                contactDesc: "Whether you're looking for bulk orders, dealership opportunities, or just want to talk about health, we're here.",
+                lblAddress: "Address",
+                lblCall: "Call Us",
+                lblEmail: "Email",
+                lblYourName: "Your Name",
+                lblPhone: "Phone",
+                lblMsg: "Message",
+                btnSendInquiry: "Send Inquiry",
+                basketTitle: "Your Basket",
+                basketSubtotal: "Subtotal",
+                basketCheckout: "Proceed to Checkout",
+                shippingInfo: "Shipping Information",
+                completeOrderWa: "Complete Order via WhatsApp",
+                backToCart: "Back to Cart",
+                addToBasket: "Add to Basket",
+                benefitLabel: "Health Benefit",
+                gradeLabel: "Natural Grade",
+                gradeValue: "100% Ancient Grain",
+                modalBrochureVerified: "100% Verified Brochure Data",
+                modalIngTitle: "Ingredients & Highlights",
+                modalFullscreen: "Fullscreen"
+            },
+            ta: {
+                langBtn: "English",
+                navProducts: "தயாரிப்புகள்",
+                navContact: "தொடர்பு",
+                heroBadge: "100% இயற்கை & பாரம்பரியம்",
+                heroTitle: `சிறுதானிய <br><span class="text-brand-fresh italic font-light">சூப்பர்ஃபுட்ஸ்.</span>`,
+                heroDesc: "100% இயற்கை சிறுதானியங்களால் செய்யப்பட்ட பாரம்பரிய சேமியா மற்றும் நூடுல்ஸ் வகைகள். ரசாயனங்கள், நிறமிகள் இல்லாத ஆரோக்கிய உணவு.",
+                heroCta: "பொருட்களைப் பார்க்க",
+                menuTitle: "எங்கள் தயாரிப்புகள்",
+                menuSub: "பாரம்பரிய சுவை மற்றும் சிறந்த ஆரோக்கியம்",
+                tabAll: "அனைத்தும்",
+                tabVermicelli: "சேமியா",
+                tabNoodles: "நூடுல்ஸ்",
+                contactHeading: `ஆரோக்கிய வாழ்விற்கு <br><span class="text-brand-fresh">எங்களை தொடர்பு கொள்ளவும்.</span>`,
+                contactDesc: "மொத்த வியாபாரம், விநியோகஸ்தர் வாய்ப்புகள் அல்லது ஆரோக்கியம் சார்ந்த தகவல்களுக்கு எங்களை அணுகவும்.",
+                lblAddress: "முகவரி",
+                lblCall: "அழைக்க",
+                lblEmail: "மின்னஞ்சல்",
+                lblYourName: "உங்கள் பெயர்",
+                lblPhone: "அலைபேசி எண்",
+                lblMsg: "செய்தி",
+                btnSendInquiry: "விசாரணை அனுப்ப",
+                basketTitle: "உங்கள் கூடை",
+                basketSubtotal: "மொத்தம்",
+                basketCheckout: "ஆர்டர் செய்ய",
+                shippingInfo: "டெலிவரி முகவரி விவரங்கள்",
+                completeOrderWa: "வாட்ஸ்அப் மூலம் ஆர்டர் செய்க",
+                backToCart: "மீண்டும் கூடைக்குச் செல்ல",
+                addToBasket: "கூடையில் சேர்க்க",
+                benefitLabel: "ஆரோக்கிய நன்மை",
+                gradeLabel: "இயற்கை தரம்",
+                gradeValue: "100% பாரம்பரிய தானியம்",
+                modalBrochureVerified: "100% சரிபார்க்கப்பட்ட கையேடு விவரங்கள்",
+                modalIngTitle: "மூலப்பொருட்கள் & சிறப்பம்சங்கள்",
+                modalFullscreen: "பெரிதாக்கு"
+            }
+        };
+
+        let cart = JSON.parse(localStorage.getItem('guud_cart_v2')) || [];
+        let currentLang = 'en';
+        let currentCategory = 'All';
+        let modalQty = 1;
+
+        // Card image index tracker (Phase 5)
+        const cardImgIndex = {};
+
+        // Active modal state (Phase 7)
+        let activeModalProduct = null;
+        let activeModalImgIdx = 0;
+
+        // Active lightbox state (Phase 6)
+        let currentLightbox = {
+            productId: null,
+            images: [],
+            index: 0,
+            title: ""
+        };
+
+        function applyLanguage(lang) {
+            currentLang = lang;
+            const t = i18n[lang];
+            const langBtn = document.getElementById('langBtn');
+            if (langBtn) langBtn.innerText = t.langBtn;
+            
+            // Header & Nav
+            const np = document.getElementById('navProducts'); if(np) np.innerText = t.navProducts;
+            const nc = document.getElementById('navContact'); if(nc) nc.innerText = t.navContact;
+            
+            // Hero
+            const hb = document.getElementById('heroBadge'); if(hb) hb.innerText = t.heroBadge;
+            const ht = document.getElementById('heroTitle'); if(ht) ht.innerHTML = t.heroTitle;
+            const hd = document.getElementById('heroDesc'); if(hd) hd.innerText = t.heroDesc;
+            const hc = document.getElementById('heroCta'); if(hc) hc.innerText = t.heroCta;
+            
+            // Catalog
+            const mt = document.getElementById('menuTitle'); if(mt) mt.innerText = t.menuTitle;
+            const ms = document.getElementById('menuSub'); if(ms) ms.innerText = t.menuSub;
+            const ta = document.getElementById('tabBtnAll'); if(ta) ta.innerText = t.tabAll;
+            const tv = document.getElementById('tabBtnVermicelli'); if(tv) tv.innerText = t.tabVermicelli;
+            const tn = document.getElementById('tabBtnNoodles'); if(tn) tn.innerText = t.tabNoodles;
+            
+            // Contact
+            const ch = document.getElementById('contactHeading'); if(ch) ch.innerHTML = t.contactHeading;
+            const cd = document.getElementById('contactDesc'); if(cd) cd.innerText = t.contactDesc;
+            const la = document.getElementById('lblAddress'); if(la) la.innerText = t.lblAddress;
+            const lc = document.getElementById('lblCall'); if(lc) lc.innerText = t.lblCall;
+            const le = document.getElementById('lblEmail'); if(le) le.innerText = t.lblEmail;
+            const ln = document.getElementById('lblYourName'); if(ln) ln.innerText = t.lblYourName;
+            const lp = document.getElementById('lblPhone'); if(lp) lp.innerText = t.lblPhone;
+            const lm = document.getElementById('lblMsg'); if(lm) lm.innerText = t.lblMsg;
+            const si = document.getElementById('btnSendInquiry'); if(si) si.innerText = t.btnSendInquiry;
+            
+            // Basket
+            const bt = document.getElementById('basketTitle'); if(bt) bt.innerText = t.basketTitle;
+            const bs = document.getElementById('basketSubtotal'); if(bs) bs.innerText = t.basketSubtotal;
+            const bc = document.getElementById('basketCheckout'); if(bc) bc.innerText = t.basketCheckout;
+            const ship = document.getElementById('shippingInfo'); if(ship) ship.innerText = t.shippingInfo;
+            const cwa = document.getElementById('completeOrderWa'); if(cwa) cwa.innerText = t.completeOrderWa;
+            const btc = document.getElementById('backToCart'); if(btc) btc.innerText = t.backToCart;
+            
+            // Modal static labels
+            const mbv = document.getElementById('modalBrochureVerifiedLbl'); if(mbv) mbv.innerText = t.modalBrochureVerified;
+            const mzl = document.getElementById('modalZoomLbl'); if(mzl) mzl.innerText = t.modalFullscreen;
+            const mil = document.getElementById('modalIngLbl'); if(mil) mil.innerText = t.modalIngTitle;
+            const mbl = document.getElementById('modalBenefitLbl'); if(mbl) mbl.innerText = t.benefitLabel;
+            const mgl = document.getElementById('modalGradeLbl'); if(mgl) mgl.innerText = t.gradeLabel;
+            const mgv = document.getElementById('modalGradeVal'); if(mgv) mgv.innerText = t.gradeValue;
+            const mab = document.getElementById('modalAddBtnText'); if(mab) mab.innerText = t.addToBasket;
+
+            renderProducts(currentCategory);
+            updateCartUI();
+        }
+
+        function toggleLang() {
+            applyLanguage(currentLang === 'en' ? 'ta' : 'en');
+        }
+
+        function init() { 
+            applyLanguage('en'); 
+            updateCartUI(); 
+
+            // Setup contact form submission via WhatsApp
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('inqName')?.value || '';
+                    const phone = document.getElementById('inqPhone')?.value || '';
+                    const msg = document.getElementById('inqMsg')?.value || '';
+                    if (!name || !phone) {
+                        alert("Please fill your name and phone number.");
+                        return;
+                    }
+                    const text = `New Inquiry from GUUD LIFE Website:\n\nName: ${name}\nPhone: ${phone}\nMessage: ${msg || 'Interested in Millet products / dealership'}`;
+                    window.open(`https://wa.me/919962867894?text=${encodeURIComponent(text)}`, '_blank');
+                });
+            }
+
+            // Keyboard navigation for Lightbox and Modal
+            document.addEventListener('keydown', (e) => {
+                const lb = document.getElementById('lightboxModal');
+                if (lb && !lb.classList.contains('hidden')) {
+                    if (e.key === 'Escape') closeLightbox();
+                    if (e.key === 'ArrowRight') nextLightboxImg();
+                    if (e.key === 'ArrowLeft') prevLightboxImg();
+                    return;
+                }
+                const pm = document.getElementById('productModal');
+                if (pm && !pm.classList.contains('hidden')) {
+                    if (e.key === 'Escape') closeModal();
+                }
+            });
+
+            // Touch swipe on Lightbox
+            setupLightboxTouchSwipe();
+        }
+
+        // ==========================================
+        // PHASE 4 & PHASE 5: PRODUCT CARD & HOVER GALLERY
+        // ==========================================
+        function renderProducts(category) {
+            currentCategory = category;
+            const grid = document.getElementById('productGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            const filtered = category === 'All' ? products : products.filter(p => p.cat === category);
+            const catLabel = (c) => currentLang === 'ta' ? (c === 'Vermicelli' ? 'சேமியா' : 'நூடுல்ஸ்') : c;
+            const addText = currentLang === 'ta' ? 'கூடையில் சேர்க்க' : 'Add to Basket';
+            
+            filtered.forEach(p => {
+                if (cardImgIndex[p.id] === undefined) cardImgIndex[p.id] = 0;
+                const currentImg = p.images[cardImgIndex[p.id]] || p.images[0];
+                const hasMultiple = p.images.length > 1;
+                
+                const card = document.createElement('div');
+                card.className = 'product-card bg-white rounded-[2.5rem] p-5 md:p-6 flex flex-col group cursor-pointer relative shadow-sm hover:shadow-xl transition-all duration-300';
+                card.onclick = (e) => { 
+                    if (!e.target.closest('button')) openModal(p.id, cardImgIndex[p.id] || 0); 
+                };
+                
+                card.innerHTML = `
+                    <div class="aspect-square bg-gray-50 rounded-[2rem] mb-5 relative overflow-hidden flex items-center justify-center p-6 select-none" id="cardImgWrap-${p.id}">
+                        <!-- Primary Product Image (Packaging) -->
+                        <img id="cardImg-${p.id}" src="${currentImg}" alt="${p.name}" class="w-full h-full object-contain ${hasMultiple && (cardImgIndex[p.id] || 0) === 0 ? 'card-hover-primary' : 'transition-transform duration-300 group-hover:scale-105'}">
+                        
+                        ${hasMultiple && (cardImgIndex[p.id] || 0) === 0 ? `
+                            <!-- Automatic Hover Crossfade (Cooked Dish from Brochure) -->
+                            <img src="${p.images[1]}" alt="${p.name} cooked" class="card-hover-secondary absolute inset-0 w-full h-full object-contain p-6">
+                        ` : ''}
+
+                        <!-- Weight Badge -->
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-gold px-3 py-1 rounded-full text-[10px] font-black shadow-sm z-10">${p.size}</div>
+                        
+                        <!-- Lightbox Zoom Icon Button -->
+                        <button onclick="event.stopPropagation(); openLightbox(${p.id}, cardImgIndex[${p.id}] || 0)" title="Enlarge image" aria-label="Enlarge image" class="card-gallery-btn absolute top-4 left-4 bg-brand-dark/80 hover:bg-brand-dark text-white p-2.5 rounded-full backdrop-blur-sm transition-all z-10 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+                        </button>
+                        
+                        ${hasMultiple ? `
+                            <!-- Hover Gallery Nav Controls -->
+                            <button onclick="event.stopPropagation(); prevCardImg(${p.id})" aria-label="Previous photo" class="card-gallery-btn absolute left-2.5 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white text-brand-dark w-8 h-8 rounded-full shadow-md flex items-center justify-center z-20 hover:scale-110 active:scale-95 border border-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button onclick="event.stopPropagation(); nextCardImg(${p.id})" aria-label="Next photo" class="card-gallery-btn absolute right-2.5 top-1/2 -translate-y-1/2 bg-white/95 hover:bg-white text-brand-dark w-8 h-8 rounded-full shadow-md flex items-center justify-center z-20 hover:scale-110 active:scale-95 border border-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                            
+                            <!-- Gallery Indicator Dots -->
+                            <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-10" id="cardDots-${p.id}">
+                                ${p.images.map((_, idx) => `
+                                    <span class="h-1.5 rounded-full transition-all duration-300 ${idx === (cardImgIndex[p.id] || 0) ? 'bg-brand-dark w-4' : 'bg-gray-300 w-1.5'}"></span>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-[9px] font-black text-brand-fresh uppercase tracking-widest">${catLabel(p.cat)}</span>
+                                ${hasMultiple ? `<span class="text-[9px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">${p.images.length} Photos</span>` : ''}
+                            </div>
+                            <h4 class="text-base md:text-lg font-bold min-h-[2.8rem] leading-snug line-clamp-2">${currentLang === 'en' ? p.name : p.nameTa}</h4>
+                            <p class="text-[11px] text-gray-400 font-medium mt-1">${p.benefit}</p>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+                            <div>
+                                <div class="flex items-baseline gap-1.5">
+                                    <span class="text-2xl font-black text-brand-dark">₹${p.price}</span>
+                                    ${p.mrp && p.mrp > p.price ? `<span class="text-xs line-through text-gray-400 font-bold">MRP ₹${p.mrp}</span>` : ''}
+                                </div>
+                            </div>
+                            <button onclick="event.stopPropagation(); addToCart(${p.id}, 1)" aria-label="${addText}" title="${addText}" class="bg-brand-dark text-white p-3.5 rounded-2xl hover:bg-brand-fresh hover:text-brand-dark transition-all duration-300 group-hover:scale-105 active:scale-95 shadow-md">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5v14"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Mobile touch swipe support for card images
+                if (hasMultiple) {
+                    const wrap = card.querySelector(`#cardImgWrap-${p.id}`);
+                    if (wrap) {
+                        let startX = 0;
+                        wrap.addEventListener('touchstart', (e) => {
+                            startX = e.changedTouches[0].screenX;
+                        }, { passive: true });
+                        wrap.addEventListener('touchend', (e) => {
+                            const endX = e.changedTouches[0].screenX;
+                            const diff = endX - startX;
+                            if (Math.abs(diff) > 35) {
+                                if (diff < 0) nextCardImg(p.id);
+                                else prevCardImg(p.id);
+                            }
+                        }, { passive: true });
+                    }
+                }
+                
+                grid.appendChild(card);
+            });
+        }
+
+        function nextCardImg(id) {
+            const p = products.find(x => x.id === id);
+            if (!p || p.images.length <= 1) return;
+            cardImgIndex[id] = ((cardImgIndex[id] || 0) + 1) % p.images.length;
+            updateCardImg(id);
+        }
+
+        function prevCardImg(id) {
+            const p = products.find(x => x.id === id);
+            if (!p || p.images.length <= 1) return;
+            cardImgIndex[id] = ((cardImgIndex[id] || 0) - 1 + p.images.length) % p.images.length;
+            updateCardImg(id);
+        }
+
+        function updateCardImg(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            const imgEl = document.getElementById(`cardImg-${id}`);
+            const dotsContainer = document.getElementById(`cardDots-${id}`);
+            const idx = cardImgIndex[id] || 0;
+            
+            if (imgEl) {
+                imgEl.src = p.images[idx];
+            }
+            if (dotsContainer) {
+                dotsContainer.innerHTML = p.images.map((_, i) => `
+                    <span class="h-1.5 rounded-full transition-all duration-300 ${i === idx ? 'bg-brand-dark w-4' : 'bg-gray-300 w-1.5'}"></span>
+                `).join('');
+            }
+        }
+
+        function filterProducts(cat, btn) {
+            currentCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(b => { 
+                b.classList.remove('tab-active'); 
+                b.classList.add('text-gray-500'); 
+            });
+            if (btn) {
+                btn.classList.add('tab-active');
+                btn.classList.remove('text-gray-500');
+            } else {
+                const idMap = { 'All': 'tabBtnAll', 'Vermicelli': 'tabBtnVermicelli', 'Noodles': 'tabBtnNoodles' };
+                const b = document.getElementById(idMap[cat]);
+                if (b) {
+                    b.classList.add('tab-active');
+                    b.classList.remove('text-gray-500');
+                }
+            }
+            renderProducts(cat);
+        }
+
+        // ==========================================
+        // PHASE 7: REDESIGNED PRODUCT DETAILS POPUP
+        // ==========================================
+        function openModal(id, initialImgIdx = 0) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            activeModalProduct = p;
+            activeModalImgIdx = initialImgIdx;
+            modalQty = 1;
+            
+            document.getElementById('modalQty').innerText = 1;
+            document.getElementById('modalTitle').innerText = p.name;
+            document.getElementById('modalTitleTa').innerText = p.nameTa;
+            document.getElementById('modalPrice').innerText = `₹${p.price}`;
+            
+            const mrpEl = document.getElementById('modalMrp');
+            if (mrpEl) {
+                if (p.mrp && p.mrp > p.price) {
+                    mrpEl.innerText = `MRP ₹${p.mrp}`;
+                    mrpEl.classList.remove('hidden');
+                } else {
+                    mrpEl.classList.add('hidden');
+                }
+            }
+            
+            document.getElementById('modalSize').innerText = p.size;
+            document.getElementById('modalCat').innerText = currentLang === 'ta' ? (p.cat === 'Vermicelli' ? 'சேமியா' : 'நூடுல்ஸ்') : p.cat;
+            document.getElementById('modalDescEn').innerText = p.descEn;
+            document.getElementById('modalDescTa').innerText = p.descTa;
+            document.getElementById('modalBenefit').innerText = p.benefit;
+            
+            const ingEl = document.getElementById('modalIngredients');
+            if (ingEl) {
+                ingEl.innerText = p.ingredients || (currentLang === 'ta' ? '100% இயற்கை தானியங்கள், தண்ணீர், உப்பு.' : '100% pure grains, RO water, salt.');
+            }
+            
+            // Set main modal image
+            updateModalImageUI();
+            
+            // Render thumbnail strip
+            const thumbsContainer = document.getElementById('modalThumbs');
+            if (thumbsContainer) {
+                if (p.images.length > 1) {
+                    thumbsContainer.classList.remove('hidden');
+                    thumbsContainer.innerHTML = p.images.map((imgSrc, i) => `
+                        <button onclick="setModalImage(${i})" class="w-14 h-14 rounded-xl overflow-hidden border-2 transition-all p-1 bg-white flex-shrink-0 ${i === activeModalImgIdx ? 'border-brand-dark shadow-md scale-105' : 'border-gray-200 opacity-60 hover:opacity-100'}">
+                            <img src="${imgSrc}" alt="${p.name} photo ${i+1}" class="w-full h-full object-contain">
+                        </button>
+                    `).join('');
+                } else {
+                    thumbsContainer.classList.add('hidden');
+                    thumbsContainer.innerHTML = '';
+                }
+            }
+            
+            document.getElementById('modalAddBtn').onclick = () => { 
+                addToCart(p.id, modalQty); 
+                closeModal(); 
+            };
+            
+            document.getElementById('productModal').classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function setModalImage(idx) {
+            if (!activeModalProduct || idx < 0 || idx >= activeModalProduct.images.length) return;
+            activeModalImgIdx = idx;
+            updateModalImageUI();
+            
+            const thumbs = document.querySelectorAll('#modalThumbs button');
+            thumbs.forEach((tb, i) => {
+                if (i === idx) {
+                    tb.classList.add('border-brand-dark', 'shadow-md', 'scale-105');
+                    tb.classList.remove('border-gray-200', 'opacity-60');
+                } else {
+                    tb.classList.remove('border-brand-dark', 'shadow-md', 'scale-105');
+                    tb.classList.add('border-gray-200', 'opacity-60');
+                }
+            });
+        }
+
+        function updateModalImageUI() {
+            if (!activeModalProduct) return;
+            const imgEl = document.getElementById('modalImg');
+            if (imgEl) {
+                imgEl.style.opacity = '0';
+                setTimeout(() => {
+                    imgEl.src = activeModalProduct.images[activeModalImgIdx];
+                    imgEl.style.opacity = '1';
+                }, 120);
+            }
+        }
+
+        function openLightboxFromModal() {
+            if (!activeModalProduct) return;
+            openLightbox(activeModalProduct.id, activeModalImgIdx);
+        }
+
+        function closeModal() { 
+            const pm = document.getElementById('productModal');
+            if (pm) pm.classList.add('hidden'); 
+            const lb = document.getElementById('lightboxModal');
+            if (!lb || lb.classList.contains('hidden')) {
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function updateModalQty(d) { 
+            modalQty = Math.max(1, modalQty + d); 
+            document.getElementById('modalQty').innerText = modalQty; 
+        }
+
+        // ==========================================
+        // PHASE 6: LIGHTBOX IMAGE GALLERY
+        // ==========================================
+        function openLightbox(productId, imageIndex = 0) {
+            const p = products.find(x => x.id === productId);
+            if (!p || !p.images || !p.images.length) return;
+            
+            currentLightbox.productId = productId;
+            currentLightbox.images = p.images;
+            currentLightbox.index = Math.min(Math.max(0, imageIndex), p.images.length - 1);
+            currentLightbox.title = currentLang === 'ta' ? p.nameTa : p.name;
+            
+            updateLightboxUI();
+            const modal = document.getElementById('lightboxModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        function updateLightboxUI() {
+            const imgEl = document.getElementById('lbImg');
+            const counterEl = document.getElementById('lbCounter');
+            const titleEl = document.getElementById('lbTitle');
+            const captionEl = document.getElementById('lbCaption');
+            const prevBtn = document.getElementById('lbPrevBtn');
+            const nextBtn = document.getElementById('lbNextBtn');
+            
+            if (!imgEl) return;
+            
+            imgEl.style.opacity = '0';
+            imgEl.style.transform = 'scale(0.96)';
+            
+            setTimeout(() => {
+                imgEl.src = currentLightbox.images[currentLightbox.index];
+                imgEl.alt = `${currentLightbox.title} - Photo ${currentLightbox.index + 1}`;
+                imgEl.style.opacity = '1';
+                imgEl.style.transform = 'scale(1)';
+            }, 120);
+            
+            if (counterEl) counterEl.innerText = `${currentLightbox.index + 1} / ${currentLightbox.images.length}`;
+            if (titleEl) titleEl.innerText = currentLightbox.title;
+            if (captionEl) {
+                const labels = ["Original Packaging Mockup", "Authentic Cooked Food Photograph (From Brochure)", "Official Packaging Specification (From Brochure)"];
+                captionEl.innerText = currentLightbox.images.length > 1 ? (labels[currentLightbox.index] || "Product Photo") : "Official Product Image";
+            }
+            
+            const showArrows = currentLightbox.images.length > 1;
+            if (prevBtn) prevBtn.style.display = showArrows ? 'block' : 'none';
+            if (nextBtn) nextBtn.style.display = showArrows ? 'block' : 'none';
+        }
+
+        function nextLightboxImg() {
+            if (currentLightbox.images.length <= 1) return;
+            currentLightbox.index = (currentLightbox.index + 1) % currentLightbox.images.length;
+            updateLightboxUI();
+        }
+
+        function prevLightboxImg() {
+            if (currentLightbox.images.length <= 1) return;
+            currentLightbox.index = (currentLightbox.index - 1 + currentLightbox.images.length) % currentLightbox.images.length;
+            updateLightboxUI();
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            if (modal) modal.classList.add('hidden');
+            const prodModal = document.getElementById('productModal');
+            if (!prodModal || prodModal.classList.contains('hidden')) {
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function setupLightboxTouchSwipe() {
+            const container = document.getElementById('lbImageContainer');
+            if (!container) return;
+            let touchStartX = 0;
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            container.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].screenX;
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 40) {
+                    if (diff < 0) nextLightboxImg();
+                    else prevLightboxImg();
+                }
+            }, { passive: true });
+        }
+
+        // ==========================================
+        // CART AND CHECKOUT SYSTEM
+        // ==========================================
+        function addToCart(id, qty) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            const exists = cart.find(i => i.id === id);
+            if (exists) exists.qty += qty; 
+            else cart.push({ ...p, qty });
+            saveCart();
+            toggleCart(true);
+        }
+
+        function saveCart() { 
+            localStorage.setItem('guud_cart_v2', JSON.stringify(cart)); 
+            updateCartUI(); 
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+            const countEl = document.getElementById('cartCount');
+            if (!container || !totalEl || !countEl) return;
+            container.innerHTML = '';
+            let total = 0, count = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                const itemImg = item.images && item.images.length ? item.images[0] : 'assets/images/product/product_img.webp';
+                const el = document.createElement('div');
+                el.className = 'flex items-center gap-4 bg-gray-50 p-4 rounded-2xl animate-fade';
+                el.innerHTML = `
+                    <div class="w-16 h-16 bg-white rounded-xl overflow-hidden flex items-center justify-center p-2 flex-shrink-0 border border-gray-100">
+                        <img src="${itemImg}" alt="${item.name}" class="w-full h-auto object-contain">
+                    </div>
+                    <div class="flex-grow">
+                        <h5 class="font-bold text-sm leading-tight">${currentLang === 'en' ? item.name : item.nameTa}</h5>
+                        <div class="flex items-center gap-2 mt-0.5">
+                            <span class="font-black text-brand-dark">₹${item.price}</span>
+                            <span class="text-[10px] text-gray-400 font-bold">(${item.size})</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="changeQty(${item.id}, -1)" aria-label="Decrease" class="w-7 h-7 border rounded-full font-bold flex items-center justify-center hover:bg-gray-200">-</button>
+                        <span class="font-bold text-sm">${item.qty}</span>
+                        <button onclick="changeQty(${item.id}, 1)" aria-label="Increase" class="w-7 h-7 border rounded-full font-bold flex items-center justify-center hover:bg-gray-200">+</button>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+
+            totalEl.innerText = `₹${total}`;
+            countEl.innerText = count;
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if(item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            saveCart();
+        }
+
+        function toggleCart(open = null) {
+            const drawer = document.getElementById('cartDrawer');
+            if(!drawer) return;
+            if(open === true) drawer.classList.add('open');
+            else if(open === false) drawer.classList.remove('open');
+            else drawer.classList.toggle('open');
+            if(!drawer.classList.contains('open')) toggleCheckout(false);
+        }
+
+        function toggleCheckout(isCheck) {
+            const cf = document.getElementById('checkoutForm');
+            const footer = document.getElementById('cartFooter');
+            const items = document.getElementById('cartItems');
+            if(cf) cf.classList.toggle('hidden', !isCheck);
+            if(footer) footer.classList.toggle('hidden', isCheck);
+            if(items) items.classList.toggle('hidden', isCheck);
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('custName')?.value;
+            const phone = document.getElementById('custPhone')?.value;
+            const addr = document.getElementById('custAddr')?.value;
+            if(!name || !phone || !addr) return alert("Please fill shipping details");
+
+            let itemsTxt = "New Order from GUUD LIFE Website:\n\n";
+            cart.forEach(i => itemsTxt += `• ${i.name} (${i.size}) x ${i.qty} = ₹${i.price * i.qty}\n`);
+            itemsTxt += `\nTotal Amount: ${document.getElementById('cartTotal')?.innerText || '₹0'}`;
+            itemsTxt += `\n\nShipping To:\nName: ${name}\nPhone: ${phone}\nAddress: ${addr}`;
+
+            window.open(`https://wa.me/919962867894?text=${encodeURIComponent(itemsTxt)}`, '_blank');
+
+            cart = [];
+            saveCart();
+            toggleCart(false);
+            alert("Thank you! Your order details have been prepared for WhatsApp.");
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
